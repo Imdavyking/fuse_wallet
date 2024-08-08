@@ -143,6 +143,7 @@ const orange1 = Color.fromARGB(255, 233, 183, 9);
 
 // app theme
 final darkTheme = ThemeData(
+  useMaterial3: true,
   dialogBackgroundColor: const Color.fromARGB(255, 26, 26, 26),
   fontFamily: 'Roboto',
   primaryColor: appPrimaryColor,
@@ -168,6 +169,7 @@ final darkTheme = ThemeData(
 );
 
 final lightTheme = ThemeData(
+  useMaterial3: true,
   appBarTheme: const AppBarTheme(
     systemOverlayStyle: SystemUiOverlayStyle(
       statusBarBrightness: Brightness.light,

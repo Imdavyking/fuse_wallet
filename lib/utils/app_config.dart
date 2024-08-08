@@ -158,6 +158,9 @@ final darkTheme = ThemeData(
   bottomSheetTheme: const BottomSheetThemeData(
     backgroundColor: Color.fromARGB(255, 26, 26, 26),
   ),
+  cardTheme: const CardTheme(
+    color: Color.fromARGB(255, 47, 47, 47),
+  ),
   colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.grey)
       .copyWith(
         secondary: Colors.white,

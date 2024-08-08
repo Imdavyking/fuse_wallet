@@ -132,7 +132,7 @@ const coinGeckoCryptoPriceKey = 'cryptoPricesKey';
 const bookMarkKey = 'bookMarks';
 const historyKey = 'broswer_kehsi_history';
 const coinMarketCapApiKey = "c354e715-9e18-4fee-806d-ae32d38d5d5c";
-const newEVMChainKey = '7500a-8077-420a-a1cf-9aa7';
+const newEVMChainKey = '5500a-8077-420a-a1cf-9aa7';
 const appUnlockTime = 'applockksksietimeal382';
 // template tags
 const blockExplorerPlaceholder = '{{TransactionHash}}';

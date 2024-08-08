@@ -311,7 +311,7 @@ List<FuseCoin> getFUSEBlockchains() {
   if (enableTestNet) {
     blockChains.addAll([
       FuseCoin(
-        name: 'Fuse',
+        name: 'Fuse(4337)',
         rpc: 'https://rpc.fuse.io',
         chainId: 122,
         blockExplorer: 'https://explorer.fuse.io/tx/$blockExplorerPlaceholder',

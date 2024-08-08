@@ -2,7 +2,6 @@
 
 import 'dart:async';
 import 'dart:convert';
-import 'package:cryptowallet/coins/bitcoin_coin.dart';
 import 'package:cryptowallet/coins/fungible_tokens/erc_fungible_coin.dart';
 import 'package:cryptowallet/coins/fuse_4337_coin.dart';
 import 'package:cryptowallet/wordlist.dart';

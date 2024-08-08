@@ -305,10 +305,25 @@ class FuseCoin extends Coin {
   String getRampID() => rampID;
 }
 
-List<FuseCoin> getEVMBlockchains() {
+List<FuseCoin> getFUSEBlockchains() {
   List<FuseCoin> blockChains = [];
 
   if (enableTestNet) {
+    blockChains.addAll([
+      FuseCoin(
+        name: 'Fuse',
+        rpc: 'https://rpc.fuse.io',
+        chainId: 122,
+        blockExplorer: 'https://explorer.fuse.io/tx/$blockExplorerPlaceholder',
+        symbol: 'FUSE',
+        default_: 'FUSE',
+        image: 'assets/fuse.png',
+        coinType: 60,
+        geckoID: "fuse-network-token",
+        payScheme: 'fuse',
+        rampID: '',
+      ),
+    ]);
   } else {
     blockChains.addAll([
       FuseCoin(

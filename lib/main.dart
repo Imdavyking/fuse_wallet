@@ -4,6 +4,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:cryptowallet/coins/bitcoin_coin.dart';
 import 'package:cryptowallet/coins/fungible_tokens/erc_fungible_coin.dart';
+import 'package:cryptowallet/coins/fuse_4337_coin.dart';
 import 'package:cryptowallet/wordlist.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import '../service/wallet_service.dart';
@@ -87,12 +88,12 @@ Future<List<Coin>> getAllBlockchains_fun() async {
     ...solanaChains,
     ...multiversXchains,
     ...getNearFungibles(),
+    ...getFUSEBlockchains(),
     ...getZilliqaBlockChains(),
     ...getTezosBlockchains(),
     ...getHarmonyBlockChains(),
     ...getIOTEXBlockChains(),
     ...getStellarBlockChains(),
-    ...getBitCoinPOSBlockchains(),
     ...getICPBlockchains(),
     ...getSuiBlockChains(),
     ...getRoninBlockchains(),

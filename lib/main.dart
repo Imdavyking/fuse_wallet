@@ -3,16 +3,12 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:cryptowallet/coins/bitcoin_coin.dart';
-import 'package:cryptowallet/coins/cardano_coin.dart';
-import 'package:cryptowallet/coins/cosmos_coin.dart';
 import 'package:cryptowallet/coins/fungible_tokens/erc_fungible_coin.dart';
 import 'package:cryptowallet/wordlist.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import '../service/wallet_service.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:cryptowallet/coins/aptos_coin.dart';
-import 'package:cryptowallet/coins/polkadot_coin.dart';
 import 'package:cryptowallet/screens/navigator_service.dart';
 import 'package:cryptowallet/screens/open_app_pin_failed.dart';
 import 'package:cryptowallet/screens/security.dart';
@@ -29,7 +25,6 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 // import 'package:pointycastle/pointycastle.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:page_transition/page_transition.dart';
-import 'coins/algorand_coin.dart';
 import 'coins/fungible_tokens/esdt_coin.dart';
 import 'coins/fungible_tokens/ton_fungible_coins.dart';
 import 'coins/harmony_coin.dart';
@@ -41,19 +36,15 @@ import 'coins/ronin_coin.dart';
 import 'coins/fungible_tokens/spl_token_coin.dart';
 import 'coins/sui_coin.dart';
 import 'coins/ton_coin.dart';
-import 'coins/fungible_tokens/tron_fungible_coin.dart';
 import 'coins/zilliqa_coin.dart';
 import 'data_structures/trie.dart';
 import 'interface/coin.dart';
 import 'screens/main_screen.dart';
 import '../coins/ethereum_coin.dart';
-import '../coins/filecoin_coin.dart';
 import '../coins/near_coin.dart';
 import '../coins/solana_coin.dart';
 import '../coins/stellar_coin.dart';
 import '../coins/tezos_coin.dart';
-import '../coins/tron_coin.dart';
-import '../coins/xrp_coin.dart';
 
 List<Coin> getAllBlockchains = [];
 
@@ -76,9 +67,7 @@ List<SolanaCoin> solanaChains = [
 List<MultiversxCoin> multiversXchains = [
   ...getEGLBBlockchains(),
 ];
-List<TronCoin> tronChains = [
-  ...getTronBlockchains(),
-];
+
 List<TonCoin> tonChains = [
   ...getTonBlockChains(),
 ];
@@ -97,26 +86,17 @@ Future<List<Coin>> getAllBlockchains_fun() async {
     ...nearChains,
     ...solanaChains,
     ...multiversXchains,
-    ...tronChains,
     ...getNearFungibles(),
-    ...getFilecoinBlockChains(),
     ...getZilliqaBlockChains(),
     ...getTezosBlockchains(),
     ...getHarmonyBlockChains(),
     ...getIOTEXBlockChains(),
-    ...getXRPBlockChains(),
     ...getStellarBlockChains(),
-    ...getAlgorandBlockchains(),
     ...getBitCoinPOSBlockchains(),
     ...getICPBlockchains(),
-    ...getCardanoBlockChains(),
-    ...getTronFungibleCoins(),
-    ...getPolkadoBlockChains(),
     ...getSuiBlockChains(),
-    ...getAptosBlockchain(),
     ...getRoninBlockchains(),
     ...getSplTokens(),
-    ...getCosmosBlockChains(),
     ...erc20Coins,
   ]..sort((a, b) => a.getSymbol().compareTo(b.getSymbol()));
   // List<Future<MapEntry<Coin, double>>> futures = blockchains.map((coin) async {

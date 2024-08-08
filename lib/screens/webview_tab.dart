@@ -2,7 +2,6 @@ import 'dart:collection';
 import 'dart:convert';
 import 'dart:isolate';
 import 'package:cryptowallet/coins/near_coin.dart';
-import 'package:flutter_js/quickjs/ffi.dart';
 import 'package:hex/hex.dart';
 import 'package:sui/utils/sha.dart';
 
@@ -13,7 +12,6 @@ import '../service/wallet_service.dart';
 import 'dart:ui';
 import 'package:bs58check/bs58check.dart';
 import 'package:cryptowallet/api/notification_api.dart';
-import 'package:cryptowallet/coins/cosmos_coin.dart';
 import 'package:cryptowallet/model/solana_web3_res.dart' hide Instruction;
 import 'package:pinput/pinput.dart';
 import 'package:solana/solana.dart' hide signTransaction;
@@ -1359,191 +1357,7 @@ class _WebViewTabState extends State<WebViewTab> with WidgetsBindingObserver {
                             break;
                           }
                       }
-                    } else if (jsData.network == 'cosmos') {
-                      final cosmosData = CosmosRequestObject.fromJson(
-                        jsData.object ?? {},
-                      );
-                      final chainId = cosmosData.chainId;
-                      final coin = getCosmosBlockChains().firstWhereOrNull(
-                        (element) => element.chainId == chainId,
-                      );
-
-                      if (coin == null) {
-                        _sendError(
-                          "keplr",
-                          'chainId not implemented',
-                          jsData.id ?? 0,
-                        );
-                        return;
-                      }
-
-                      final accountDetail = await coin.importData(data);
-                      final sendingAddress = accountDetail.address;
-                      final pubKey = accountDetail.publicKey;
-
-                      switch (jsData.name) {
-                        case "requestAccounts":
-                          final request = await _getWeb3Address(
-                            'cosmos$chainId',
-                            sendingAddress,
-                          );
-
-                          if (request != null) {
-                            await _setCosmosAddress(
-                              jsData.id,
-                              sendingAddress,
-                              pubKey,
-                            );
-
-                            return;
-                          }
-                          await connectWalletModal(
-                            context: context,
-                            url: jsData.url,
-                            onConfirm: () async {
-                              try {
-                                await _setCosmosAddress(
-                                  jsData.id,
-                                  sendingAddress,
-                                  pubKey,
-                                );
-
-                                await _saveWeb3Address(
-                                  'cosmos$chainId',
-                                  sendingAddress,
-                                );
-                              } catch (e) {
-                                final error =
-                                    e.toString().replaceAll('"', '\'');
-                                _sendError("keplr", error, jsData.id ?? 0);
-                              } finally {
-                                Navigator.pop(context);
-                              }
-                            },
-                            onReject: () async {
-                              _sendError(
-                                "keplr",
-                                'user rejected connection',
-                                jsData.id ?? 0,
-                              );
-                              Navigator.pop(context);
-                            },
-                          );
-
-                          break;
-                        case "signTransaction":
-                          CosmosDirectSignDoc signDoc = cosmosData.signDoc!;
-                          final decoded = coin.decodeBodyBytesDapp(
-                            bodyBytes: signDoc.body_bytes,
-                          );
-                          await signCosmosTransaction(
-                            from: sendingAddress,
-                            txData: cosmosData.data,
-                            networkIcon: null,
-                            context: context,
-                            symbol: coin.symbol,
-                            name: '',
-                            messages: decoded,
-                            coin: coin,
-                            onConfirm: () async {
-                              try {
-                                if (kDebugMode) {
-                                  print(decoded);
-                                }
-                                final result = await coin.signTranxDapp(
-                                  bodyBytes: signDoc.body_bytes,
-                                  authInfoBytes: signDoc.auth_info_bytes,
-                                );
-                                await _sendCosmosDirectTxSign(
-                                  jsData.id ?? 0,
-                                  result,
-                                );
-                              } catch (e) {
-                                final error =
-                                    e.toString().replaceAll('"', '\'');
-                                _sendError("keplr", error, jsData.id ?? 0);
-                              } finally {
-                                Navigator.pop(context);
-                              }
-                            },
-                            onReject: () async {
-                              _sendError(
-                                "keplr",
-                                'user rejected transaction',
-                                jsData.id ?? 0,
-                              );
-                              Navigator.pop(context);
-                            },
-                            chainId: chainId,
-                          );
-
-                          break;
-                        case "signMessage":
-                          try {
-                            final data = CosmosRequestObject.fromJson(
-                              jsData.object ?? {},
-                            );
-
-                            await signMessage(
-                              context: context,
-                              messageType: personalSignKey,
-                              data: data.data,
-                              networkIcon: null,
-                              name: null,
-                              onConfirm: () async {
-                                try {
-                                  final signature =
-                                      await coin.signMessageDapp(data.data!);
-
-                                  await _sendCosmosMessageSign(
-                                    jsData.id,
-                                    signature,
-                                  );
-                                } catch (e) {
-                                  final error =
-                                      e.toString().replaceAll('"', '\'');
-                                  _sendError("keplr", error, jsData.id ?? 0);
-                                } finally {
-                                  Navigator.pop(context);
-                                }
-                              },
-                              onReject: () {
-                                _sendError("keplr", 'user rejected signature',
-                                    jsData.id ?? 0);
-                                Navigator.pop(context);
-                              },
-                            );
-                          } catch (e) {
-                            final error = e.toString().replaceAll('"', '\'');
-                            _sendError("keplr", error, jsData.id ?? 0);
-                          }
-                          break;
-
-                        case "sendTransaction":
-                          try {
-                            final response = await coin.sendTrxDapp(
-                              base64.decode(cosmosData.raw!),
-                              cosmosData.mode!,
-                            );
-
-                            if (response == null) {
-                              await _sendNull(
-                                "keplr",
-                                jsData.id ?? 0,
-                              );
-                            }
-                            _sendResult(
-                              "keplr",
-                              response!,
-                              jsData.id ?? 0,
-                            );
-                          } catch (e) {
-                            final error = e.toString().replaceAll('"', '\'');
-                            _sendError("keplr", error, jsData.id ?? 0);
-                          }
-
-                          break;
-                      }
+                    
                     } else if (jsData.network == 'ethereum') {
                       int chainId = pref.get(dappChainIdKey);
 

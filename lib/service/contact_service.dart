@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:algorand_dart/algorand_dart.dart';
 import 'package:cryptowallet/interface/coin.dart';
 import 'package:flutter_js/quickjs/ffi.dart';
 import 'package:hex/hex.dart';
@@ -91,7 +90,7 @@ class ContactParams {
   }
 
   static String genId() {
-    return HEX.encode(generateRandomBytes());
+    return HEX.encode(List.generate(16, (index) => index));
   }
 
   Map<String, dynamic> toJson() {

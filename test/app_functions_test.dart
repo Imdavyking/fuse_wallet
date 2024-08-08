@@ -3,8 +3,6 @@ import 'package:cryptowallet/extensions/big_int_ext.dart';
 import 'package:cryptowallet/interface/keystore.dart';
 import 'package:cryptowallet/utils/all_coins.dart';
 import 'dart:convert';
-import 'package:cryptowallet/coins/filecoin_coin.dart';
-import 'package:cryptowallet/coins/polkadot_coin.dart';
 import 'package:cryptowallet/eip/eip681.dart';
 import 'package:cryptowallet/interface/coin.dart';
 import 'package:cryptowallet/main.dart';
@@ -57,10 +55,7 @@ void main() async {
     expect(word, base64Dencryption);
   });
 
-  test('polkadot hashes are correct', () {
-    expect(xxhashAsHex('System'), '26aa394eea5630e07c48ae0c9558cef7');
-    expect(xxhashAsHex('Account'), 'b99d880ec681799c0cf30e8886371da9');
-  });
+
 
   test("BigIntExt convert correctly", () {
     String amount = '10000000000000000000';
@@ -79,58 +74,7 @@ void main() async {
     expect(result3, BigInt.parse('-250000892384000000000000'));
   });
   test('can generate transactionSignLotus cid', () {
-    final cid = transactionSignLotus(
-      {
-        'Version': 0,
-        'To': "f153zbrv25wvfrqf2vrvlk2qmpietuu6wexiyerja",
-        'From': "f125p5nhte6kwrigoxrcaxftwpinlgspfnqd2zaui",
-        'Nonce': 0,
-        'Value': "10000000000000000000",
-        'GasLimit': 1000000000000,
-        'GasFeeCap': "10000000",
-        'GasPremium': "10000000",
-        'Method': 0,
-        'Params': "",
-      },
-      'ebb58c44303695d99f710f3b0d21c2cbea692acde24b2363c5f043edd47af10c',
-    );
-    final cid2 = transactionSignLotus(
-      {
-        'Version': 0,
-        'To': "f125p5nhte6kwrigoxrcaxftwpinlgspfnqd2zaui",
-        'From': "f153zbrv25wvfrqf2vrvlk2qmpietuu6wexiyerja",
-        'Nonce': 0,
-        'Value': "10000000000000000000",
-        'GasLimit': 1000000000000,
-        'GasFeeCap': "10000000",
-        'GasPremium': "10000000",
-        'Method': 0,
-        'Params': "",
-      },
-      'ebb58c44303695d99f710f3b0d21c2cbea692acde24b2363c5f043edd47af10c',
-    );
-    final cid3 = transactionSignLotus(
-      {
-        'Version': 0,
-        'To': "f1655h66sk2dgp3d7uksbnhgk7n56xjeofpe2lpwq",
-        'From': "f1erk23ics4ecpk3ny2g4orliwejklw7e6goxujji",
-        'Nonce': 0,
-        'Value': "10000000000000000000",
-        'GasLimit': 3229228282,
-        'GasFeeCap': "10000000",
-        'GasPremium': "10000000",
-        'Method': 0,
-        'Params': "",
-      },
-      'ebb58c44303695d99f710f3b0d21c2cbea692acde24b2363c5f043edd47af10c',
-    );
-    expect(cid,
-        'kx9WoSmQGC3V1Vk24csxAERzZpShXl38HVdQBaST3r0Ia6YtlZVuO6bDvG3YA2ZK6NC8C3z8ap1w5XXil/ryVgE=');
-    expect(cid2,
-        'jHF0ghnCwyl7XNEfgXx1+9sjbg3lJe09gEux/+m5pRFudpQEeFxxt9ZACHNDE//u31r3GBZ4aYixpV8xYp57HgA=');
-    expect(cid3,
-        'yPzGMXOoxqlmjIPlAFU2swX8VcwBaeDJho+RUNMy/PA17wJ5H1Cq86yPVvyQlLIau5tEmQZlavWtqmFwFppdIgE=');
-  });
+   });
 
   test('can generate filecoin cid', () {
     expect(

@@ -19,7 +19,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_gen/gen_l10n/app_localization.dart';
 import 'package:intl/intl.dart';
 
-import '../coins/tron_coin.dart';
 import '../service/wallet_service.dart';
 import '../utils/get_token_image.dart';
 import 'launch_url.dart';
@@ -114,15 +113,7 @@ class _TokenState extends State<Token> {
         label: 'View',
         textColor: Colors.white,
         onPressed: () async {
-          if (coin is TronCoin) {
-            String addrExplor = await coin.addressExplorer();
-            addrExplor += '/permissions?anchorName=anchor_permission_owner';
-
-            await launchPageUrl(
-              context: context,
-              url: addrExplor,
-            );
-          }
+          
         },
       ),
     );

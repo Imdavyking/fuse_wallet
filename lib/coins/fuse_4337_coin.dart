@@ -232,6 +232,7 @@ class FuseCoin extends Coin {
   @override
   Future<double> getBalance(bool skipNetworkRequest) async {
     String address = roninAddrToEth(await getAddress());
+
     final tokenKey = '$rpc$address/balance4337';
     final storedBalance = pref.get(tokenKey);
 
@@ -243,10 +244,13 @@ class FuseCoin extends Coin {
 
     try {
       final fuseSdk = await getSdk();
+      print(address);
       final userTokens = await fuseSdk.balancesModule.getTokenList(address);
+      print("errrror");
+      print(userTokens.error);
       for (TokenDetails action in userTokens.data?.result ?? []) {
         if (action.address == Variables.NATIVE_TOKEN_ADDRESS) {
-          print("Yeeee");
+          print("baa");
           // await pref.put(tokenKey, action);
           // return action.amount;
           return savedBalance;

@@ -51,8 +51,16 @@ abstract class Coin {
   }
 
   String savedTransKey() => '${getExplorer()}${getDefault()} Details';
+  Future<String?> stakeToken(String amount) async {
+    return null;
+  }
+
+  Future<String?> unstakeToken(String amount) async {
+    return null;
+  }
 
   Widget? getNFTPage() => null;
+  Widget? getStakingPage() => null;
 
   int decimals();
   String getName();

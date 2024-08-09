@@ -112,9 +112,7 @@ class _TokenState extends State<Token> {
       action: SnackBarAction(
         label: 'View',
         textColor: Colors.white,
-        onPressed: () async {
-          
-        },
+        onPressed: () async {},
       ),
     );
     snack.showSnackBar(snackbar);
@@ -459,6 +457,42 @@ class _TokenState extends State<Token> {
                                               height: 5,
                                             ),
                                             const Text('NFTs'),
+                                          ],
+                                        ),
+                                      ],
+                                      if (coin.getStakingPage() != null) ...[
+                                        const SizedBox(
+                                          width: 30,
+                                        ),
+                                        Column(
+                                          children: [
+                                            GestureDetector(
+                                              onTap: () async {
+                                                Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (ctx) =>
+                                                        coin.getStakingPage()!,
+                                                  ),
+                                                );
+                                              },
+                                              child: Container(
+                                                width: 40,
+                                                height: 40,
+                                                decoration: const BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                  color: appBackgroundblue,
+                                                ),
+                                                child: const Icon(
+                                                  FontAwesomeIcons.coins,
+                                                  color: Colors.black,
+                                                ),
+                                              ),
+                                            ),
+                                            const SizedBox(
+                                              height: 5,
+                                            ),
+                                            const Text('Stake'),
                                           ],
                                         ),
                                       ]

@@ -2,7 +2,9 @@
 
 import 'dart:convert';
 import 'dart:math';
+import 'package:cryptowallet/screens/stake_token.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 
 import '../service/wallet_service.dart';
 import 'package:flutter/foundation.dart';
@@ -67,7 +69,15 @@ class FuseCoin extends Coin {
     return image;
   }
 
-  Future<String?> stakeToken(String amount, String to) async {
+  @override
+  Widget getStakingPage() {
+    return StakeToken(
+      tokenData: this,
+    );
+  }
+
+  @override
+  Future<String?> stakeToken(String amount) async {
     final fuseSDK = await getSdk();
 
     final res = await fuseSDK.stakeToken(
@@ -81,7 +91,8 @@ class FuseCoin extends Coin {
     return ev?.transactionHash;
   }
 
-  Future<String?> unstakeToken(String amount, String to) async {
+  @override
+  Future<String?> unstakeToken(String amount) async {
     final fuseSDK = await getSdk();
 
     final res = await fuseSDK.unstakeToken(

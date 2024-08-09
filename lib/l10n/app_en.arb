@@ -287,5 +287,6 @@
       }
     }
   },
-  "connectionDetails": "Connection Details"
+  "connectionDetails": "Connection Details",
+  "failedToStake": "Failed to Stake"
 }

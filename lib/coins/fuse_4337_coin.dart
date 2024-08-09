@@ -276,17 +276,18 @@ class FuseCoin extends Coin {
         '/v0/balances/assets/$address',
       );
 
-      final result = BalanceResponse.fromJson(Map.from(response.data));
+      final userTokens = BalanceResponse.fromJson(Map.from(response.data));
 
-      print(result.result);
+      for (TokenDetails action in userTokens.result) {
+        if (ContractsUtils.isNativeToken(action.address)) {
+          final base = BigInt.from(10);
 
-      // for (TokenDetails action in userTokens.data?.result ?? []) {
-      //   if (action.address == Variables.NATIVE_TOKEN_ADDRESS) {
-      //     // await pref.put(tokenKey, action);
-      //     // return action.amount;
-      //     return savedBalance;
-      //   }
-      // }
+          double fuseBalance = action.amount / base.pow(decimals());
+          await pref.put(tokenKey, fuseBalance);
+
+          return fuseBalance;
+        }
+      }
       return savedBalance;
     } catch (e, s) {
       if (kDebugMode) {

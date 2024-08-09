@@ -207,8 +207,7 @@ class FuseCoin extends Coin {
     final data = WalletService.getActiveKey(walletImportType)!.data;
     final response = await importData(data);
     final credentials = EthPrivateKey.fromHex(response.privateKey!);
-    // Create a project: https://console.fuse.io/build
-    const publicApiKey = 'YOUR_PUBLIC_API_KEY';
+    const publicApiKey = 'pk_E0S4XB9wT5ycd-WmIWBeb3is';
     return await FuseSDK.init(
       publicApiKey,
       credentials,
@@ -217,8 +216,17 @@ class FuseCoin extends Coin {
 
   @override
   Future<String> getAddress() async {
+    final data = WalletService.getActiveKey(walletImportType)!.data;
+    final details = await importData(data);
+
+    final addressKey = '$rpc/address${details.address}';
+    final storedAddress = pref.get(addressKey);
+
+    if (storedAddress != null) return storedAddress;
     final FuseSDK fuseSDK = await getSdk();
-    return fuseSDK.wallet.getSender();
+    final smartAddress = fuseSDK.wallet.getSender();
+    await pref.put(addressKey, smartAddress);
+    return smartAddress;
   }
 
   @override

@@ -132,11 +132,7 @@ class ICPCoin extends Coin {
       await pref.put(key, userBalance);
 
       return userBalance;
-    } catch (e, sk) {
-      if (kDebugMode) {
-        print(e);
-        print(sk);
-      }
+    } catch (e) {
       return savedBalance;
     }
   }

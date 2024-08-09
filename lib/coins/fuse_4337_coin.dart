@@ -246,6 +246,7 @@ class FuseCoin extends Coin {
       final userTokens = await fuseSdk.balancesModule.getTokenList(address);
       for (TokenDetails action in userTokens.data?.result ?? []) {
         if (action.address == Variables.NATIVE_TOKEN_ADDRESS) {
+          print("Yeeee");
           // await pref.put(tokenKey, action);
           // return action.amount;
           return savedBalance;
@@ -253,6 +254,7 @@ class FuseCoin extends Coin {
       }
       return savedBalance;
     } catch (e) {
+      print(e);
       return savedBalance;
     }
   }

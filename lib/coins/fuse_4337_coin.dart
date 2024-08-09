@@ -77,6 +77,20 @@ class FuseCoin extends Coin {
     return res.userOpHash;
   }
 
+  Future<String> unstakeToken(String amount, String to) async {
+    final fuseSDK = await getSdk();
+
+    final res = await fuseSDK.unstakeToken(
+      UnstakeRequestBody(
+        accountAddress: fuseSDK.wallet.getSender(),
+        tokenAmount: amount,
+        tokenAddress: Variables.NATIVE_TOKEN_ADDRESS,
+      ),
+      EthereumAddress.fromHex('0xb1DD0B683d9A56525cC096fbF5eec6E60FE79871'),
+    );
+    return res.userOpHash;
+  }
+
   @override
   String getName() {
     return name;

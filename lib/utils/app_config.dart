@@ -165,15 +165,12 @@ final darkTheme = ThemeData(
   inputDecorationTheme: const InputDecorationTheme(
     fillColor: Color.fromARGB(255, 47, 47, 47),
     filled: true,
+    iconColor: Colors.white,
+    suffixIconColor: Colors.white,
+    prefixIconColor: Colors.white,
   ),
   iconTheme: const IconThemeData(color: Colors.white),
-  iconButtonTheme: IconButtonThemeData(
-    style: ButtonStyle(
-      iconColor: WidgetStateProperty.all(
-        Colors.white,
-      ),
-    ),
-  ),
+
   colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.grey)
       .copyWith(
         secondary: Colors.white,

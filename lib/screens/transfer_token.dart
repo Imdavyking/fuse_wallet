@@ -205,9 +205,9 @@ class _TransferTokenState extends State<TransferToken> {
                     width: double.infinity,
                     child: ElevatedButton(
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.resolveWith(
+                        backgroundColor: WidgetStateProperty.resolveWith(
                             (states) => appBackgroundblue),
-                        shape: MaterialStateProperty.resolveWith(
+                        shape: WidgetStateProperty.resolveWith(
                           (states) => RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),

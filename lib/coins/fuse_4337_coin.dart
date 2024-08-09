@@ -2,6 +2,8 @@
 
 import 'dart:convert';
 import 'dart:math';
+import 'package:dio/dio.dart';
+
 import '../service/wallet_service.dart';
 import 'package:flutter/foundation.dart';
 import 'package:hex/hex.dart';
@@ -16,6 +18,7 @@ import '../extensions/big_int_ext.dart';
 import "package:http/http.dart";
 
 const etherDecimals = 18;
+const _publicApiKey = 'pk_E0S4XB9wT5ycd-WmIWBeb3is';
 
 class FuseCoin extends Coin {
   int coinType;
@@ -221,9 +224,9 @@ class FuseCoin extends Coin {
     final data = WalletService.getActiveKey(walletImportType)!.data;
     final response = await importData(data);
     final credentials = EthPrivateKey.fromHex(response.privateKey!);
-    const publicApiKey = 'pk_E0S4XB9wT5ycd-WmIWBeb3is';
+
     return await FuseSDK.init(
-      publicApiKey,
+      _publicApiKey,
       credentials,
     );
   }
@@ -257,20 +260,38 @@ class FuseCoin extends Coin {
     if (skipNetworkRequest) return savedBalance;
 
     try {
-      final fuseSdk = await getSdk();
-      final userTokens = await fuseSdk.balancesModule.getTokenList(address);
+      final _dio = Dio(
+        BaseOptions(
+          baseUrl: Uri.https(Variables.BASE_URL, '/api').toString(),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          queryParameters: {
+            'apiKey': _publicApiKey,
+          },
+        ),
+      );
 
-      for (TokenDetails action in userTokens.data?.result ?? []) {
-        if (action.address == Variables.NATIVE_TOKEN_ADDRESS) {
-          // await pref.put(tokenKey, action);
-          // return action.amount;
-          return savedBalance;
-        }
-      }
+      final response = await _dio.get(
+        '/v0/balances/assets/$address',
+      );
+
+      final result = BalanceResponse.fromJson(Map.from(response.data));
+
+      print(result.result);
+
+      // for (TokenDetails action in userTokens.data?.result ?? []) {
+      //   if (action.address == Variables.NATIVE_TOKEN_ADDRESS) {
+      //     // await pref.put(tokenKey, action);
+      //     // return action.amount;
+      //     return savedBalance;
+      //   }
+      // }
       return savedBalance;
-    } catch (e) {
+    } catch (e, s) {
       if (kDebugMode) {
         print(e);
+        print(s);
       }
       return savedBalance;
     }
@@ -477,4 +498,58 @@ String roninAddrToEth(String address) {
 
 String ethAddrToRonin(String address) {
   return address.replaceFirst('0x', 'ronin:');
+}
+
+class BalanceResponse {
+  final String message;
+  final List<TokenDetails> result;
+  final int status;
+
+  BalanceResponse({
+    required this.message,
+    required this.result,
+    required this.status,
+  });
+
+  factory BalanceResponse.fromJson(Map<String, dynamic> json) {
+    return BalanceResponse(
+      message: json['message'],
+      result: List<TokenDetails>.from(
+          json['result'].map((x) => TokenDetails.fromJson(x))),
+      status: json['status'].runtimeType == int
+          ? json['status']
+          : int.parse(json['status']),
+    );
+  }
+}
+
+class TokenDetails {
+  final BigInt amount;
+  final String address;
+  final int decimals;
+  final String name;
+  final String symbol;
+  final String type;
+
+  TokenDetails({
+    required this.amount,
+    required this.address,
+    required this.decimals,
+    required this.name,
+    required this.symbol,
+    required this.type,
+  });
+
+  factory TokenDetails.fromJson(Map<String, dynamic> json) {
+    return TokenDetails(
+      amount: BigInt.parse(json['balance']),
+      address: json['contractAddress'],
+      decimals: json['decimals'].runtimeType == int
+          ? json['decimals']
+          : int.parse(json['decimals']),
+      name: json['name'],
+      symbol: json['symbol'],
+      type: json['type'],
+    );
+  }
 }

@@ -67,7 +67,7 @@ class FuseCoin extends Coin {
     return image;
   }
 
-  Future<String> stakeToken(String amount, String to) async {
+  Future<String?> stakeToken(String amount, String to) async {
     final fuseSDK = await getSdk();
 
     final res = await fuseSDK.stakeToken(
@@ -77,10 +77,11 @@ class FuseCoin extends Coin {
         tokenAddress: Variables.NATIVE_TOKEN_ADDRESS,
       ),
     );
-    return res.userOpHash;
+    final ev = await res.wait();
+    return ev?.transactionHash;
   }
 
-  Future<String> unstakeToken(String amount, String to) async {
+  Future<String?> unstakeToken(String amount, String to) async {
     final fuseSDK = await getSdk();
 
     final res = await fuseSDK.unstakeToken(
@@ -91,7 +92,8 @@ class FuseCoin extends Coin {
       ),
       EthereumAddress.fromHex('0xb1DD0B683d9A56525cC096fbF5eec6E60FE79871'),
     );
-    return res.userOpHash;
+    final ev = await res.wait();
+    return ev?.transactionHash;
   }
 
   @override
@@ -317,7 +319,8 @@ class FuseCoin extends Coin {
       ),
       wei,
     );
-    return res.userOpHash;
+    final ev = await res.wait();
+    return ev?.transactionHash;
   }
 
   @override

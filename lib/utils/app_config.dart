@@ -161,6 +161,19 @@ final darkTheme = ThemeData(
   cardTheme: const CardTheme(
     color: Color.fromARGB(255, 47, 47, 47),
   ),
+  // cardColor: const Color.fromARGB(255, 26, 26, 26),
+  inputDecorationTheme: const InputDecorationTheme(
+    fillColor: Color.fromARGB(255, 47, 47, 47),
+    filled: true,
+  ),
+  iconTheme: const IconThemeData(color: Colors.white),
+  iconButtonTheme: IconButtonThemeData(
+    style: ButtonStyle(
+      iconColor: WidgetStateProperty.all(
+        Colors.white,
+      ),
+    ),
+  ),
   colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.grey)
       .copyWith(
         secondary: Colors.white,

@@ -288,5 +288,7 @@
     }
   },
   "connectionDetails": "Connection Details",
-  "failedToStake": "Failed to Stake"
+  "failedToStake": "Failed to Stake",
+  "failedToUnStake": "Failed to UnStake",
+  "unstakeToken": "Unstake Token"
 }

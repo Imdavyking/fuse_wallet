@@ -1,21 +1,29 @@
 {
   "de": [
     "connectionDetails",
-    "failedToStake"
+    "failedToStake",
+    "failedToUnStake",
+    "unstakeToken"
   ],
 
   "fr": [
     "connectionDetails",
-    "failedToStake"
+    "failedToStake",
+    "failedToUnStake",
+    "unstakeToken"
   ],
 
   "hi": [
     "connectionDetails",
-    "failedToStake"
+    "failedToStake",
+    "failedToUnStake",
+    "unstakeToken"
   ],
 
   "zh": [
     "connectionDetails",
-    "failedToStake"
+    "failedToStake",
+    "failedToUnStake",
+    "unstakeToken"
   ]
 }

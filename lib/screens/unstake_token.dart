@@ -1,6 +1,5 @@
 import 'package:cryptowallet/components/loader.dart';
 import 'package:cryptowallet/interface/coin.dart';
-import 'package:cryptowallet/screens/unstake_token.dart';
 import 'package:cryptowallet/utils/app_config.dart';
 import 'package:cryptowallet/utils/qr_scan_view.dart';
 import 'package:cryptowallet/utils/rpc_urls.dart';
@@ -14,11 +13,11 @@ import 'package:pinput/pinput.dart';
 
 import '../service/wallet_service.dart';
 
-class StakeToken extends StatefulWidget {
+class UnStakeToken extends StatefulWidget {
   final Coin tokenData;
   final String? amount;
   final String? recipient;
-  const StakeToken({
+  const UnStakeToken({
     required this.tokenData,
     Key? key,
     this.amount,
@@ -26,10 +25,10 @@ class StakeToken extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _StakeTokenState createState() => _StakeTokenState();
+  _UnStakeTokenState createState() => _UnStakeTokenState();
 }
 
-class _StakeTokenState extends State<StakeToken> {
+class _UnStakeTokenState extends State<UnStakeToken> {
   final amountContrl = TextEditingController();
   final memoContrl = TextEditingController();
   final tokenIdContrl = TextEditingController();
@@ -59,7 +58,7 @@ class _StakeTokenState extends State<StakeToken> {
       key: _scaffoldKey,
       appBar: AppBar(
         title: Text(
-            '${localization.stake} ${coin.contractAddress() != null ? ellipsify(str: coin.getSymbol()) : coin.getSymbol()}'),
+            '${localization.unstakeToken} ${coin.contractAddress() != null ? ellipsify(str: coin.getSymbol()) : coin.getSymbol()}'),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -255,7 +254,7 @@ class _StakeTokenState extends State<StakeToken> {
                       }
 
                       try {
-                        await widget.tokenData.stakeToken(amount);
+                        await widget.tokenData.unstakeToken(amount);
 
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
@@ -273,7 +272,7 @@ class _StakeTokenState extends State<StakeToken> {
                           SnackBar(
                             backgroundColor: Colors.red,
                             content: Text(
-                              localization.failedToStake,
+                              localization.failedToUnStake,
                               style: const TextStyle(
                                 color: Colors.white,
                               ),
@@ -285,47 +284,6 @@ class _StakeTokenState extends State<StakeToken> {
                       setState(() {
                         isLoading = false;
                       });
-                    },
-                  ),
-                ),
-                const SizedBox(
-                  height: 30,
-                ),
-                SizedBox(
-                  width: double.infinity,
-                  height: 50,
-                  child: ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor: WidgetStateProperty.resolveWith(
-                        (states) => appBackgroundblue,
-                      ),
-                      shape: WidgetStateProperty.resolveWith(
-                        (states) => RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                      textStyle: WidgetStateProperty.resolveWith(
-                        (states) => const TextStyle(
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                    child: isLoading
-                        ? const Loader()
-                        : Text(
-                            localization.unstakeToken,
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                            ),
-                          ),
-                    onPressed: () async {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (ctx) => UnStakeToken(tokenData: coin),
-                        ),
-                      );
                     },
                   ),
                 ),

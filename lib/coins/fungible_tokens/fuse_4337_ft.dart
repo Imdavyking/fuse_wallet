@@ -50,15 +50,25 @@ class FuseFungibleCoin extends FuseCoin implements FTExplorer {
       '/token/${tokenAddress()}',
     );
   }
+
+  @override
+  Future<String?> stakeToken(String amount) async {
+    return null;
+  }
+
+  @override
+  Future<String?> unstakeToken(String amount) async {
+    return null;
+  }
 }
 
-List<FuseCoin> getFUSEFTBlockchains() {
-  List<FuseCoin> blockChains = [];
+List<FuseFungibleCoin> getFUSEFTBlockchains() {
+  List<FuseFungibleCoin> blockChains = [];
 
   if (enableTestNet) {
     blockChains.addAll([
-      FuseCoin(
-        name: 'Fuse(4337)',
+      FuseFungibleCoin(
+        name: 'sFUSE',
         rpc: 'https://rpc.fuse.io',
         chainId: 122,
         blockExplorer: 'https://explorer.fuse.io/tx/$blockExplorerPlaceholder',
@@ -70,12 +80,13 @@ List<FuseCoin> getFUSEFTBlockchains() {
         payScheme: 'fuse',
         rampID: '',
         contractAddress: '0xb1DD0B683d9A56525cC096fbF5eec6E60FE79871',
+        mintDecimals: 10,
       ),
     ]);
   } else {
     blockChains.addAll([
-      FuseCoin(
-        name: 'Fuse',
+      FuseFungibleCoin(
+        name: 'sFUSE',
         rpc: 'https://rpc.fuse.io',
         chainId: 122,
         blockExplorer: 'https://explorer.fuse.io/tx/$blockExplorerPlaceholder',
@@ -87,6 +98,7 @@ List<FuseCoin> getFUSEFTBlockchains() {
         payScheme: 'fuse',
         rampID: '',
         contractAddress: '0xb1DD0B683d9A56525cC096fbF5eec6E60FE79871',
+        mintDecimals: 10,
       ),
     ]);
   }

@@ -124,6 +124,9 @@ class _TokenState extends State<Token> {
     localization = AppLocalizations.of(context)!;
     description = description ?? localization.coin;
 
+    print(coin.getName());
+    print(coin.tokenAddress());
+
     return Scaffold(
       appBar: AppBar(
         title: Text(

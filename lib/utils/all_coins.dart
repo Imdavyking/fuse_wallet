@@ -1,6 +1,7 @@
 const coinGeckoIDs = [
   'bittorrent',
   'bittorrent-old',
+  'liquid-staked-fuse',
   'sweatcoin',
   "bitcoin",
   "binance-usd",

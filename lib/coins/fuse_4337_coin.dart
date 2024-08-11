@@ -2,6 +2,7 @@
 
 import 'dart:convert';
 import 'dart:math';
+import 'package:cryptowallet/save_goal/create_goal.dart';
 import 'package:cryptowallet/screens/stake_token.dart';
 import 'package:dio/dio.dart';
 import 'package:eth_sig_util/util/utils.dart';
@@ -73,6 +74,7 @@ class FuseCoin extends Coin {
         'createGoal',
         [goalName, EthereumAddress.fromHex(tokenAddress)],
         include0x: true,
+        jsonInterface: savingWalletAbi,
       ),
     );
     final res = await fuseSDK.executeBatch(
@@ -97,6 +99,7 @@ class FuseCoin extends Coin {
         'saveTokens',
         [goalName, amount.toBigIntDec(decimals())],
         include0x: true,
+        jsonInterface: savingWalletAbi,
       ),
     );
     final res = await fuseSDK.executeBatch(
@@ -125,6 +128,7 @@ class FuseCoin extends Coin {
         'transferTokens',
         [goalName, EthereumAddress.fromHex(to), amount.toBigIntDec(decimals())],
         include0x: true,
+        jsonInterface: savingWalletAbi,
       ),
     );
     final res = await fuseSDK.executeBatch(
@@ -149,6 +153,7 @@ class FuseCoin extends Coin {
         'withdrawTokens',
         [goalName, amount.toBigIntDec(decimals())],
         include0x: true,
+        jsonInterface: savingWalletAbi,
       ),
     );
     final res = await fuseSDK.executeBatch(
@@ -173,6 +178,7 @@ class FuseCoin extends Coin {
         'viewGoalBalance',
         [goalName],
         include0x: true,
+        jsonInterface: savingWalletAbi,
       ),
     );
     final res = await fuseSDK.callContract(
@@ -358,6 +364,11 @@ class FuseCoin extends Coin {
       return resolver['msg'];
     }
     return null;
+  }
+
+  @override
+  Widget? getGoalPage() {
+    return CreateGoal(coin: this);
   }
 
   Future<FuseSDK> getSdk() async {

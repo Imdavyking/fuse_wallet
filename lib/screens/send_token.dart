@@ -289,14 +289,14 @@ class _SendTokenState extends State<SendToken> {
                   height: 50,
                   child: ElevatedButton(
                     style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.resolveWith(
+                      backgroundColor: WidgetStateProperty.resolveWith(
                           (states) => appBackgroundblue),
-                      shape: MaterialStateProperty.resolveWith(
+                      shape: WidgetStateProperty.resolveWith(
                         (states) => RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
                       ),
-                      textStyle: MaterialStateProperty.resolveWith(
+                      textStyle: WidgetStateProperty.resolveWith(
                         (states) => const TextStyle(color: Colors.white),
                       ),
                     ),

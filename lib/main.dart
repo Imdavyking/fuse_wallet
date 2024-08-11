@@ -50,6 +50,7 @@ import '../coins/tezos_coin.dart';
 List<Coin> getAllBlockchains = [];
 
 late String currencyJson;
+late String savingWalletAbi;
 late String currencyJsonSearch;
 late String provider;
 late String nightly;
@@ -175,6 +176,8 @@ void main() async {
   webNotifer = await rootBundle.loadString('js/web_notification.js');
   currencyJson = await rootBundle.loadString('json/currency_symbol.json');
   currencyJsonSearch = await rootBundle.loadString('json/currencies.json');
+  savingWalletAbi = await rootBundle.loadString('json/saving-wallet-abi.json');
+
   abiJs = await rootBundle.loadString('js/abi-decoder.js');
   await WebNotificationPermissionDb.loadSavedPermissions();
   if (WalletService.isPharseKey()) {

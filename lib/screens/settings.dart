@@ -4,6 +4,7 @@ import 'dart:convert';
 
 import 'package:cryptowallet/components/user_details_placeholder.dart';
 import 'package:cryptowallet/education/eip4337.edu.dart';
+import 'package:cryptowallet/save_goal/create_goal.dart';
 import 'package:cryptowallet/screens/contact.dart';
 import 'package:cryptowallet/screens/language.dart';
 import 'package:cryptowallet/screens/saved_urls.dart';

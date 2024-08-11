@@ -6,20 +6,20 @@ class EIP4337Education extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Educational Steps')),
-      body: const StepperExample(),
+      appBar: AppBar(title: const Text('Educational Content')),
+      body: const EducationStepper(),
     );
   }
 }
 
-class StepperExample extends StatefulWidget {
-  const StepperExample({Key? key}) : super(key: key);
+class EducationStepper extends StatefulWidget {
+  const EducationStepper({Key? key}) : super(key: key);
 
   @override
-  State<StepperExample> createState() => _StepperExampleState();
+  State<EducationStepper> createState() => _EducationStepperState();
 }
 
-class _StepperExampleState extends State<StepperExample> {
+class _EducationStepperState extends State<EducationStepper> {
   int _index = 0;
 
   @override

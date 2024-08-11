@@ -59,6 +59,8 @@ abstract class Coin {
     return null;
   }
 
+  Widget? getGoalPage() => null;
+
   Widget? getNFTPage() => null;
   Widget? getStakingPage() => null;
 

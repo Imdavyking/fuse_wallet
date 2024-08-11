@@ -495,6 +495,42 @@ class _TokenState extends State<Token> {
                                             const Text('Stake'),
                                           ],
                                         ),
+                                      ],
+                                      if (coin.getGoalPage() != null) ...[
+                                        const SizedBox(
+                                          width: 30,
+                                        ),
+                                        Column(
+                                          children: [
+                                            GestureDetector(
+                                              onTap: () async {
+                                                Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                    builder: (ctx) =>
+                                                        coin.getGoalPage()!,
+                                                  ),
+                                                );
+                                              },
+                                              child: Container(
+                                                width: 40,
+                                                height: 40,
+                                                decoration: const BoxDecoration(
+                                                  shape: BoxShape.circle,
+                                                  color: appBackgroundblue,
+                                                ),
+                                                child: const Icon(
+                                                  FontAwesomeIcons.lock,
+                                                  color: Colors.black,
+                                                ),
+                                              ),
+                                            ),
+                                            const SizedBox(
+                                              height: 5,
+                                            ),
+                                            const Text('Save'),
+                                          ],
+                                        ),
                                       ]
                                     ],
                                   ),

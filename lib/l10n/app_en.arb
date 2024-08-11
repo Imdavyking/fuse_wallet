@@ -291,5 +291,7 @@
   "failedToStake": "Failed to Stake",
   "failedToUnStake": "Failed to UnStake",
   "unstakeToken": "Unstake Token",
-  "education": "Education"
+  "education": "Education",
+  "setSavingGoal": "Set Saving Goal",
+  "goalName": "Goal Name"
 }

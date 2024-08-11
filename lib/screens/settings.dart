@@ -5,7 +5,6 @@ import 'dart:convert';
 import 'package:cryptowallet/components/user_details_placeholder.dart';
 import 'package:cryptowallet/education/eip4337.edu.dart';
 import 'package:cryptowallet/screens/contact.dart';
-import 'package:cryptowallet/screens/dark_mode_toggler.dart';
 import 'package:cryptowallet/screens/language.dart';
 import 'package:cryptowallet/screens/saved_urls.dart';
 import 'package:cryptowallet/screens/security.dart';
@@ -52,7 +51,6 @@ class _SettingsState extends State<Settings>
     localization = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
-        actions: const [DarkModeToggler()],
         title: Text(localization.settings),
       ),
       body: SafeArea(

@@ -260,7 +260,7 @@ class _MyAppState extends State<MyApp> {
           navigatorKey: NavigationService.navigatorKey, // set property
           debugShowCheckedModeBanner: false,
           locale: _locale,
-          theme: lightTheme,
+          theme: darkTheme,
           localizationsDelegates: AppLocalizations.localizationsDelegates,
           supportedLocales: AppLocalizations.supportedLocales,
           darkTheme: darkTheme,

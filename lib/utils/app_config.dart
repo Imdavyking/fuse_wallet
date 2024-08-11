@@ -194,35 +194,35 @@ final darkTheme = ThemeData(
       .copyWith(surface: const Color.fromARGB(255, 26, 26, 26)),
 );
 
-final lightTheme = ThemeData(
-  useMaterial3: true,
-  appBarTheme: const AppBarTheme(
-    systemOverlayStyle: SystemUiOverlayStyle(
-      statusBarBrightness: Brightness.light,
-    ),
-  ),
-  fontFamily: 'Roboto',
-  primaryColor: Colors.white,
-  bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-    type: BottomNavigationBarType.fixed,
-    backgroundColor: Color(0xffEBF3FF),
-    unselectedItemColor: Colors.grey,
-  ),
-  checkboxTheme: CheckboxThemeData(
-    fillColor: WidgetStateProperty.all(appPrimaryColor),
-    checkColor: WidgetStateProperty.all(appPrimaryColor),
-    overlayColor: WidgetStateProperty.all(appPrimaryColor),
-  ),
-  dividerColor: dividerColor,
-  colorScheme: ColorScheme.fromSwatch(
-    primarySwatch: alterPrimaryColor,
-  )
-      .copyWith(
-        secondary: Colors.black,
-        brightness: Brightness.light,
-      )
-      .copyWith(surface: const Color(0xFFE5E5E5)),
-);
+// final lightTheme = ThemeData(
+//   useMaterial3: true,
+//   appBarTheme: const AppBarTheme(
+//     systemOverlayStyle: SystemUiOverlayStyle(
+//       statusBarBrightness: Brightness.light,
+//     ),
+//   ),
+//   fontFamily: 'Roboto',
+//   primaryColor: Colors.white,
+//   bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+//     type: BottomNavigationBarType.fixed,
+//     backgroundColor: Color(0xffEBF3FF),
+//     unselectedItemColor: Colors.grey,
+//   ),
+//   checkboxTheme: CheckboxThemeData(
+//     fillColor: WidgetStateProperty.all(appPrimaryColor),
+//     checkColor: WidgetStateProperty.all(appPrimaryColor),
+//     overlayColor: WidgetStateProperty.all(appPrimaryColor),
+//   ),
+//   dividerColor: dividerColor,
+//   colorScheme: ColorScheme.fromSwatch(
+//     primarySwatch: alterPrimaryColor,
+//   )
+//       .copyWith(
+//         secondary: Colors.black,
+//         brightness: Brightness.light,
+//       )
+//       .copyWith(surface: const Color(0xFFE5E5E5)),
+// );
 
 // preferences keys and app data
 const userPinTrials = 3;

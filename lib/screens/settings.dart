@@ -148,7 +148,9 @@ class _SettingsState extends State<Settings>
                             ),
                           ),
                         ),
-                        const Divider(),
+                        const SizedBox(
+                          height: 20,
+                        ),
                         InkWell(
                           onTap: () async {
                             Navigator.push(
@@ -194,7 +196,9 @@ class _SettingsState extends State<Settings>
                             ),
                           ),
                         ),
-                        const Divider(),
+                        const SizedBox(
+                          height: 20,
+                        ),
                         InkWell(
                           onTap: () async {
                             Navigator.push(
@@ -239,7 +243,9 @@ class _SettingsState extends State<Settings>
                             ),
                           ),
                         ),
-                        const Divider(),
+                        const SizedBox(
+                          height: 20,
+                        ),
                         SizedBox(
                           height: 35,
                           child: Row(
@@ -275,7 +281,9 @@ class _SettingsState extends State<Settings>
                             ],
                           ),
                         ),
-                        const Divider(),
+                        const SizedBox(
+                          height: 20,
+                        ),
                         InkWell(
                           onTap: () async {
                             await Navigator.push(
@@ -320,7 +328,9 @@ class _SettingsState extends State<Settings>
                             ),
                           ),
                         ),
-                        const Divider(),
+                        const SizedBox(
+                          height: 20,
+                        ),
                         InkWell(
                           onTap: () async {
                             await Navigator.push(
@@ -365,7 +375,9 @@ class _SettingsState extends State<Settings>
                             ),
                           ),
                         ),
-                        const Divider(),
+                        const SizedBox(
+                          height: 20,
+                        ),
                         InkWell(
                           onTap: () async {
                             await Navigator.push(
@@ -411,7 +423,9 @@ class _SettingsState extends State<Settings>
                             ),
                           ),
                         ),
-                        const Divider(),
+                        const SizedBox(
+                          height: 20,
+                        ),
                         if (!WalletService.isViewKey()) ...[
                           InkWell(
                             onTap: () async {
@@ -450,7 +464,9 @@ class _SettingsState extends State<Settings>
                               ),
                             ),
                           ),
-                          const Divider(),
+                          const SizedBox(
+                            height: 20,
+                          ),
                         ],
                         InkWell(
                           onTap: () async {
@@ -497,7 +513,9 @@ class _SettingsState extends State<Settings>
                             ),
                           ),
                         ),
-                        const Divider(),
+                        const SizedBox(
+                          height: 20,
+                        ),
                         InkWell(
                           onTap: () async {
                             Navigator.push(
@@ -544,7 +562,9 @@ class _SettingsState extends State<Settings>
                             ),
                           ),
                         ),
-                        const Divider(),
+                        const SizedBox(
+                          height: 20,
+                        ),
                         InkWell(
                           onTap: () async {
                             Navigator.push(
@@ -658,7 +678,9 @@ class _SettingsState extends State<Settings>
                               ],
                             ),
                           ),
-                          const Divider(),
+                          const SizedBox(
+                            height: 20,
+                          ),
                           if (WalletService.isPrivateKey()) ...[
                             InkWell(
                               onTap: () async {
@@ -729,7 +751,9 @@ class _SettingsState extends State<Settings>
                                 ),
                               ),
                             ),
-                            const Divider(),
+                            const SizedBox(
+                              height: 20,
+                            ),
                           ],
                           if (WalletService.isPharseKey()) ...[
                             InkWell(
@@ -801,7 +825,9 @@ class _SettingsState extends State<Settings>
                                 ),
                               ),
                             ),
-                            const Divider(),
+                            const SizedBox(
+                              height: 20,
+                            ),
                           ],
                           InkWell(
                             onTap: () async {

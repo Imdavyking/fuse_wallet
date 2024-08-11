@@ -231,7 +231,9 @@ class _DappState extends State<Dapp> {
                                 ),
                               ),
                             ),
-                            const Divider(),
+                            const SizedBox(
+                              height: 20,
+                            ),
                             SizedBox(
                               width: double.infinity,
                               child: InkWell(
@@ -255,7 +257,9 @@ class _DappState extends State<Dapp> {
                                 ),
                               ),
                             ),
-                            const Divider(),
+                            const SizedBox(
+                              height: 20,
+                            ),
                             SizedBox(
                               width: double.infinity,
                               child: InkWell(
@@ -283,7 +287,9 @@ class _DappState extends State<Dapp> {
                                 ),
                               ),
                             ),
-                            const Divider(),
+                            const SizedBox(
+                              height: 20,
+                            ),
                             SizedBox(
                               width: double.infinity,
                               child: InkWell(
@@ -310,7 +316,9 @@ class _DappState extends State<Dapp> {
                                 ),
                               ),
                             ),
-                            const Divider(),
+                            const SizedBox(
+                              height: 20,
+                            ),
                             SizedBox(
                               width: double.infinity,
                               child: InkWell(
@@ -359,7 +367,9 @@ class _DappState extends State<Dapp> {
                                     ),
                                   )),
                             ),
-                            const Divider(),
+                            const SizedBox(
+                              height: 20,
+                            ),
                             SizedBox(
                               width: double.infinity,
                               child: InkWell(
@@ -391,7 +401,9 @@ class _DappState extends State<Dapp> {
                                     ),
                                   )),
                             ),
-                            const Divider(),
+                            const SizedBox(
+                              height: 20,
+                            ),
                             SizedBox(
                               width: double.infinity,
                               child: InkWell(
@@ -446,7 +458,9 @@ class _DappState extends State<Dapp> {
                                 ),
                               ),
                             ),
-                            const Divider(),
+                            const SizedBox(
+                              height: 20,
+                            ),
                             SizedBox(
                               width: double.infinity,
                               child: InkWell(

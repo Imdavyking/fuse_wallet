@@ -178,6 +178,11 @@ final darkTheme = ThemeData(
     // ),
   ),
   iconTheme: const IconThemeData(color: Colors.white),
+  iconButtonTheme: IconButtonThemeData(
+    style: ButtonStyle(
+      iconColor: WidgetStateProperty.all(Colors.white),
+    ),
+  ),
 
   colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.grey)
       .copyWith(

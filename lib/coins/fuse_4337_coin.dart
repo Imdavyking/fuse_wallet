@@ -21,6 +21,7 @@ import "package:http/http.dart";
 
 const etherDecimals = 18;
 const _publicApiKey = 'pk_E0S4XB9wT5ycd-WmIWBeb3is';
+const _savingWalletContract = '0xDDe3506e554e26de4fd8ec99b8D784E262265552';
 
 class FuseCoin extends Coin {
   int coinType;

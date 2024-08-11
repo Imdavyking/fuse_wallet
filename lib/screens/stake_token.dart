@@ -310,15 +310,13 @@ class _StakeTokenState extends State<StakeToken> {
                         ),
                       ),
                     ),
-                    child: isLoading
-                        ? const Loader()
-                        : Text(
-                            localization.unstakeToken,
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                            ),
-                          ),
+                    child: Text(
+                      localization.unstakeToken,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
                     onPressed: () async {
                       Navigator.push(
                         context,

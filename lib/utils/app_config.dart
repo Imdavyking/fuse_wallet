@@ -152,12 +152,14 @@ final darkTheme = ThemeData(
     backgroundColor: Color.fromARGB(255, 47, 47, 47),
     selectedItemColor: appPrimaryColor,
   ),
+
   scaffoldBackgroundColor: const Color.fromARGB(255, 26, 26, 26),
   cardColor: const Color.fromARGB(255, 47, 47, 47),
   dividerColor: const Color.fromARGB(255, 57, 57, 57),
   bottomSheetTheme: const BottomSheetThemeData(
     backgroundColor: Color.fromARGB(255, 26, 26, 26),
   ),
+
   cardTheme: const CardTheme(
     color: Color.fromARGB(255, 47, 47, 47),
   ),
@@ -168,6 +170,12 @@ final darkTheme = ThemeData(
     iconColor: Colors.white,
     suffixIconColor: Colors.white,
     prefixIconColor: Colors.white,
+  ),
+  appBarTheme: const AppBarTheme(
+    color: Color.fromARGB(255, 47, 47, 47),
+    // systemOverlayStyle: SystemUiOverlayStyle(
+    //   statusBarBrightness: Brightness.dark,
+    // ),
   ),
   iconTheme: const IconThemeData(color: Colors.white),
 

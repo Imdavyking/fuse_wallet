@@ -3,6 +3,7 @@
 import 'dart:convert';
 
 import 'package:cryptowallet/components/user_details_placeholder.dart';
+import 'package:cryptowallet/education/eip4337.edu.dart';
 import 'package:cryptowallet/screens/contact.dart';
 import 'package:cryptowallet/screens/dark_mode_toggler.dart';
 import 'package:cryptowallet/screens/language.dart';
@@ -327,6 +328,51 @@ class _SettingsState extends State<Settings>
                             await Navigator.push(
                               context,
                               MaterialPageRoute(builder: (ctx) {
+                                return const EIP4337Education();
+                              }),
+                            );
+                          },
+                          child: SizedBox(
+                            height: 35,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Container(
+                                      width: 26,
+                                      height: 26,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(13),
+                                        color: Color.fromARGB(255, 255, 95, 82),
+                                      ),
+                                      child: Icon(
+                                        FontAwesomeIcons.book,
+                                        size: 22,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Text(
+                                      localization.education,
+                                      style: TextStyle(fontSize: 18),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        const Divider(),
+                        InkWell(
+                          onTap: () async {
+                            await Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (ctx) {
                                 return Contact();
                               }),
                             );
@@ -384,11 +430,11 @@ class _SettingsState extends State<Settings>
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
-                                children: [
+                                children: const [
                                   Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
-                                    children: const [
+                                    children: [
                                       Image(
                                           image: AssetImage(
                                               'assets/wallet_connect_new.png'),
@@ -808,7 +854,7 @@ class _SettingsState extends State<Settings>
                                               Color.fromARGB(255, 255, 61, 46),
                                         ),
                                         child: Icon(
-                                          FontAwesomeIcons.shieldAlt,
+                                          FontAwesomeIcons.shieldHalved,
                                           size: 16,
                                           color: Colors.white,
                                         ),

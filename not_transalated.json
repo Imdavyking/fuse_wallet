@@ -3,27 +3,31 @@
     "connectionDetails",
     "failedToStake",
     "failedToUnStake",
-    "unstakeToken"
+    "unstakeToken",
+    "education"
   ],
 
   "fr": [
     "connectionDetails",
     "failedToStake",
     "failedToUnStake",
-    "unstakeToken"
+    "unstakeToken",
+    "education"
   ],
 
   "hi": [
     "connectionDetails",
     "failedToStake",
     "failedToUnStake",
-    "unstakeToken"
+    "unstakeToken",
+    "education"
   ],
 
   "zh": [
     "connectionDetails",
     "failedToStake",
     "failedToUnStake",
-    "unstakeToken"
+    "unstakeToken",
+    "education"
   ]
 }

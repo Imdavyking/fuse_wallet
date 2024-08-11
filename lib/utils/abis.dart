@@ -1975,6 +1975,116 @@ const erc721Abi = [
     "type": "function"
   }
 ];
+const savingWalletAbi = [
+  {"type": "error", "name": "SavingsWallet__GoalAlreadyExists", "inputs": []},
+  {"type": "error", "name": "SavingsWallet__GoalDoesNotExist", "inputs": []},
+  {"type": "error", "name": "SavingsWallet__InsufficientBalance", "inputs": []},
+  {"type": "error", "name": "SavingsWallet__TokenTransferFailed", "inputs": []},
+  {
+    "type": "event",
+    "anonymous": false,
+    "name": "GoalCreated",
+    "inputs": [
+      {"type": "address", "name": "user", "indexed": true},
+      {"type": "string", "name": "goalName", "indexed": false},
+      {"type": "address", "name": "tokenAddress", "indexed": false}
+    ]
+  },
+  {
+    "type": "event",
+    "anonymous": false,
+    "name": "TokensSaved",
+    "inputs": [
+      {"type": "address", "name": "user", "indexed": true},
+      {"type": "string", "name": "goalName", "indexed": false},
+      {"type": "uint256", "name": "amount", "indexed": false}
+    ]
+  },
+  {
+    "type": "event",
+    "anonymous": false,
+    "name": "TokensTransferred",
+    "inputs": [
+      {"type": "address", "name": "user", "indexed": true},
+      {"type": "string", "name": "goalName", "indexed": false},
+      {"type": "address", "name": "to", "indexed": false},
+      {"type": "uint256", "name": "amount", "indexed": false}
+    ]
+  },
+  {
+    "type": "event",
+    "anonymous": false,
+    "name": "TokensWithdrawn",
+    "inputs": [
+      {"type": "address", "name": "user", "indexed": true},
+      {"type": "string", "name": "goalName", "indexed": false},
+      {"type": "uint256", "name": "amount", "indexed": false}
+    ]
+  },
+  {
+    "type": "function",
+    "name": "createGoal",
+    "constant": false,
+    "payable": false,
+    "gas": 29000000,
+    "inputs": [
+      {"type": "string", "name": "goalName"},
+      {"type": "address", "name": "tokenAddress"}
+    ],
+    "outputs": []
+  },
+  {
+    "type": "function",
+    "name": "saveTokens",
+    "constant": false,
+    "payable": false,
+    "gas": 29000000,
+    "inputs": [
+      {"type": "string", "name": "goalName"},
+      {"type": "uint256", "name": "amount"}
+    ],
+    "outputs": []
+  },
+  {
+    "type": "function",
+    "name": "transferTokens",
+    "constant": false,
+    "payable": false,
+    "gas": 29000000,
+    "inputs": [
+      {"type": "string", "name": "goalName"},
+      {"type": "address", "name": "to"},
+      {"type": "uint256", "name": "amount"}
+    ],
+    "outputs": []
+  },
+  {
+    "type": "function",
+    "name": "viewGoalBalance",
+    "constant": true,
+    "stateMutability": "view",
+    "payable": false,
+    "gas": 29000000,
+    "inputs": [
+      {"type": "string", "name": "goalName"}
+    ],
+    "outputs": [
+      {"type": "uint256", "name": "goalBalance"}
+    ]
+  },
+  {
+    "type": "function",
+    "name": "withdrawTokens",
+    "constant": false,
+    "payable": false,
+    "gas": 29000000,
+    "inputs": [
+      {"type": "string", "name": "goalName"},
+      {"type": "uint256", "name": "amount"}
+    ],
+    "outputs": []
+  }
+];
 const erc20Abi = [
   {
     "inputs": [

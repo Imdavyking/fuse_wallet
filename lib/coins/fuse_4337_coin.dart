@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'dart:math';
 import 'package:cryptowallet/save_goal/create_goal.dart';
 import 'package:cryptowallet/screens/stake_token.dart';
+import 'package:cryptowallet/utils/abis.dart';
 import 'package:dio/dio.dart';
 import 'package:eth_sig_util/util/utils.dart';
 import 'package:flutter/material.dart';
@@ -67,6 +68,7 @@ class FuseCoin extends Coin {
 
   Future<String?> createGoal(String goalName, String tokenAddress) async {
     final fuseSDK = await getSdk();
+
     final createGoalData = hexToBytes(
       ContractsUtils.encodedDataForContractCall(
         _contractName,
@@ -74,7 +76,7 @@ class FuseCoin extends Coin {
         'createGoal',
         [goalName, EthereumAddress.fromHex(tokenAddress)],
         include0x: true,
-        jsonInterface: savingWalletAbi,
+        jsonInterface: jsonEncode(savingWalletAbi),
       ),
     );
     final res = await fuseSDK.executeBatch(
@@ -99,7 +101,7 @@ class FuseCoin extends Coin {
         'saveTokens',
         [goalName, amount.toBigIntDec(decimals())],
         include0x: true,
-        jsonInterface: savingWalletAbi,
+        jsonInterface: jsonEncode(savingWalletAbi),
       ),
     );
     final res = await fuseSDK.executeBatch(
@@ -128,7 +130,7 @@ class FuseCoin extends Coin {
         'transferTokens',
         [goalName, EthereumAddress.fromHex(to), amount.toBigIntDec(decimals())],
         include0x: true,
-        jsonInterface: savingWalletAbi,
+        jsonInterface: jsonEncode(savingWalletAbi),
       ),
     );
     final res = await fuseSDK.executeBatch(
@@ -153,7 +155,7 @@ class FuseCoin extends Coin {
         'withdrawTokens',
         [goalName, amount.toBigIntDec(decimals())],
         include0x: true,
-        jsonInterface: savingWalletAbi,
+        jsonInterface: jsonEncode(savingWalletAbi),
       ),
     );
     final res = await fuseSDK.executeBatch(
@@ -178,7 +180,7 @@ class FuseCoin extends Coin {
         'viewGoalBalance',
         [goalName],
         include0x: true,
-        jsonInterface: savingWalletAbi,
+        jsonInterface: jsonEncode(savingWalletAbi),
       ),
     );
     final res = await fuseSDK.callContract(

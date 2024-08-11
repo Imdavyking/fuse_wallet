@@ -19,7 +19,7 @@ class CreateGoal extends StatefulWidget {
 class _CreateGoalState extends State<CreateGoal> {
   final TextEditingController _goalNameController = TextEditingController();
 
-  final TextEditingController _tokenAddressController = TextEditingController();
+  final TextEditingController _AmountController = TextEditingController();
 
   final ValueNotifier<bool> isLoading = ValueNotifier<bool>(false);
 
@@ -31,7 +31,7 @@ class _CreateGoalState extends State<CreateGoal> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Create a Saving Goal'),
+        title: const Text('Save Token Goal'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -60,54 +60,44 @@ class _CreateGoalState extends State<CreateGoal> {
               ),
             ),
             const SizedBox(height: 16.0),
-            Stack(
-              children: [
-                TextFormField(
-                  controller: _tokenAddressController,
-                  keyboardType: TextInputType.visiblePassword,
-                  decoration: InputDecoration(
-                    hintText: localization!.contractAddress,
-                    focusedBorder: const OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                      borderSide: BorderSide.none,
-                    ),
-                    border: const OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                        borderSide: BorderSide.none),
-                    enabledBorder: const OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                      borderSide: BorderSide.none,
-                    ), // you
-                    filled: true,
-                  ),
-                ),
-                Positioned(
-                  right: 10,
-                  top: 10,
-                  child: InkWell(
-                    onTap: () async {
-                      ClipboardData? cdata =
-                          await Clipboard.getData(Clipboard.kTextPlain);
-                      if (cdata == null) return;
-                      if (cdata.text == null) return;
+            TextFormField(
+              enabled: true,
+              keyboardType:
+                  const TextInputType.numberWithOptions(decimal: true),
+              validator: (value) {
+                if (value?.trim() == '') {
+                  return localization!.amountIsRequired;
+                } else {
+                  return null;
+                }
+              },
+              controller: _AmountController,
+              decoration: InputDecoration(
+                suffixIconConstraints: const BoxConstraints(minWidth: 100),
+                // suffixIcon: IconButton(
+                //   alignment: Alignment.centerRight,
+                //   icon: Text(
+                //     localization!.max,
+                //     textAlign: TextAlign.end,
+                //   ),
+                //   onPressed: () async {
+                //     final maxTransfer = await coin.getMaxTransfer();
+                //     _AmountController.setText(maxTransfer.toString());
+                //   },
+                // ),
+                hintText: localization!.amount,
 
-                      _tokenAddressController.setText(cdata.text!);
-                    },
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).scaffoldBackgroundColor,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          localization!.paste,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
+                focusedBorder: const OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                    borderSide: BorderSide.none),
+                border: const OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                    borderSide: BorderSide.none),
+                enabledBorder: const OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                    borderSide: BorderSide.none), // you
+                filled: true,
+              ),
             ),
             const SizedBox(height: 32.0),
             ValueListenableBuilder(
@@ -141,10 +131,10 @@ class _CreateGoalState extends State<CreateGoal> {
                     onPressed: () async {
                       try {
                         final goalName = _goalNameController.text;
-                        final tokenAddress = _tokenAddressController.text;
+                        final tokenAddress = _AmountController.text;
                         EthereumAddress.fromHex(tokenAddress);
                         isLoading.value = true;
-                        await widget.coin.createGoal(goalName, tokenAddress);
+                        await widget.coin.saveTokens(goalName, tokenAddress);
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
                             backgroundColor: Colors.green,

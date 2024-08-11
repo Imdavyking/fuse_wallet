@@ -7,7 +7,7 @@ Prime Wallet is a cutting-edge cryptocurrency wallet designed to empower users w
 
 1. **Fuse Blockchain Integration:** Prime Wallet is tailored specifically to interact seamlessly with the Fuse blockchain, allowing users to send, receive, and store Fuse tokens. It fully supports the unique features and functionalities of Fuse.
 
-2. **EIP-4337 Account Abstraction:** Prime Wallet supports EIP-4337, allowing for advanced functionalities such as multi-signature wallets, social recovery options, and customizable security models. This feature enhances user experience by offering more flexible and powerful smart wallet capabilities, tailored for both novice and advanced users.
+2. **EIP-4337 Account Abstraction:** Prime Wallet supports EIP-4337, enabling customizable security models and other advanced functionalities. This feature enhances the user experience by offering more flexible and powerful smart wallet capabilities, tailored for both novice and advanced users. Prime Wallet interacts with the Fuse blockchain using an API key and an Externally Owned Account (EOA).
 
 3. **User-Friendly Interface:** We've prioritized user experience, offering an intuitive and visually appealing interface. Users can effortlessly navigate their wallet, view their portfolio, and execute transactions.
 
@@ -28,8 +28,6 @@ Prime Wallet is a cutting-edge cryptocurrency wallet designed to empower users w
 11. **Backup and Recovery:** Prime Wallet enables users to create secure backups of their wallet information. In the unfortunate event of a lost or compromised device, our recovery process is straightforward and well-documented.
 
 12. **Real-Time Push Notifications:** Users can opt to receive real-time notifications for all transactions, keeping them informed about account activity even when they're on the go.
-
-13. **Customer Support:** We offer a dedicated customer support system to assist users with any issues, inquiries, or technical difficulties, ensuring a smooth experience.
 
 14. **Continuous Improvement:** We are committed to enhancing Prime Wallet based on user feedback and industry developments. Regular updates and feature enhancements will ensure that our users always have access to the latest advancements.
 

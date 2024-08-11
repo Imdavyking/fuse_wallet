@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'dart:math';
 import 'package:cryptowallet/screens/stake_token.dart';
 import 'package:dio/dio.dart';
+import 'package:eth_sig_util/util/utils.dart';
 import 'package:flutter/material.dart';
 
 import '../service/wallet_service.dart';
@@ -22,6 +23,7 @@ import "package:http/http.dart";
 const etherDecimals = 18;
 const _publicApiKey = 'pk_E0S4XB9wT5ycd-WmIWBeb3is';
 const _savingWalletContract = '0xDDe3506e554e26de4fd8ec99b8D784E262265552';
+const _contractName = 'SavingsWallet';
 
 class FuseCoin extends Coin {
   int coinType;
@@ -60,6 +62,126 @@ class FuseCoin extends Coin {
   @override
   String getExplorer() {
     return blockExplorer;
+  }
+
+  Future<String?> createGoal(String goalName, String tokenAddress) async {
+    final fuseSDK = await getSdk();
+    final createGoalData = hexToBytes(
+      ContractsUtils.encodedDataForContractCall(
+        _contractName,
+        EthereumAddress.fromHex(_savingWalletContract),
+        'createGoal',
+        [goalName, EthereumAddress.fromHex(tokenAddress)],
+        include0x: true,
+      ),
+    );
+    final res = await fuseSDK.executeBatch(
+      [
+        Call(
+          to: EthereumAddress.fromHex(_savingWalletContract),
+          value: BigInt.zero,
+          data: createGoalData,
+        ),
+      ],
+    );
+    final ev = await res.wait();
+    return ev?.transactionHash;
+  }
+
+  Future<String?> saveTokens(String goalName, String amount) async {
+    final fuseSDK = await getSdk();
+    final saveTokensData = hexToBytes(
+      ContractsUtils.encodedDataForContractCall(
+        _contractName,
+        EthereumAddress.fromHex(_savingWalletContract),
+        'saveTokens',
+        [goalName, amount.toBigIntDec(decimals())],
+        include0x: true,
+      ),
+    );
+    final res = await fuseSDK.executeBatch(
+      [
+        Call(
+          to: EthereumAddress.fromHex(_savingWalletContract),
+          value: BigInt.zero,
+          data: saveTokensData,
+        ),
+      ],
+    );
+    final ev = await res.wait();
+    return ev?.transactionHash;
+  }
+
+  Future<String?> transferTokens(
+    String goalName,
+    String to,
+    String amount,
+  ) async {
+    final fuseSDK = await getSdk();
+    final transferTokensData = hexToBytes(
+      ContractsUtils.encodedDataForContractCall(
+        _contractName,
+        EthereumAddress.fromHex(_savingWalletContract),
+        'transferTokens',
+        [goalName, EthereumAddress.fromHex(to), amount.toBigIntDec(decimals())],
+        include0x: true,
+      ),
+    );
+    final res = await fuseSDK.executeBatch(
+      [
+        Call(
+          to: EthereumAddress.fromHex(_savingWalletContract),
+          value: BigInt.zero,
+          data: transferTokensData,
+        ),
+      ],
+    );
+    final ev = await res.wait();
+    return ev?.transactionHash;
+  }
+
+  Future<String?> withdrawTokens(String goalName, String amount) async {
+    final fuseSDK = await getSdk();
+    final withdrawTokensData = hexToBytes(
+      ContractsUtils.encodedDataForContractCall(
+        _contractName,
+        EthereumAddress.fromHex(_savingWalletContract),
+        'withdrawTokens',
+        [goalName, amount.toBigIntDec(decimals())],
+        include0x: true,
+      ),
+    );
+    final res = await fuseSDK.executeBatch(
+      [
+        Call(
+          to: EthereumAddress.fromHex(_savingWalletContract),
+          value: BigInt.zero,
+          data: withdrawTokensData,
+        ),
+      ],
+    );
+    final ev = await res.wait();
+    return ev?.transactionHash;
+  }
+
+  Future<String?> viewGoalBalance(String goalName) async {
+    final fuseSDK = await getSdk();
+    final viewGoalBalanceData = hexToBytes(
+      ContractsUtils.encodedDataForContractCall(
+        _contractName,
+        EthereumAddress.fromHex(_savingWalletContract),
+        'viewGoalBalance',
+        [goalName],
+        include0x: true,
+      ),
+    );
+    final res = await fuseSDK.callContract(
+      EthereumAddress.fromHex(_savingWalletContract),
+      BigInt.zero,
+      viewGoalBalanceData,
+    );
+    final ev = await res.wait();
+    return ev?.transactionHash;
   }
 
   @override

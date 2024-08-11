@@ -40,6 +40,9 @@ class FuseFungibleCoin extends FuseCoin implements FTExplorer {
   String tokenAddress() => contractAddress;
 
   @override
+  Widget? getGoalPage() => null;
+
+  @override
   int decimals() => mintDecimals;
 
   @override
@@ -69,43 +72,53 @@ class FuseFungibleCoin extends FuseCoin implements FTExplorer {
 List<FuseFungibleCoin> getFUSEFTBlockchains() {
   List<FuseFungibleCoin> blockChains = [];
 
-  if (enableTestNet) {
-    blockChains.addAll([
-      FuseFungibleCoin(
-        name: 'sFUSE',
-        rpc: 'https://rpc.fuse.io',
-        chainId: 122,
-        blockExplorer: 'https://explorer.fuse.io/tx/$blockExplorerPlaceholder',
-        symbol: 'sFUSE',
-        default_: 'sFUSE',
-        image: 'assets/sfuse.png',
-        coinType: 60,
-        geckoID: "liquid-staked-fuse",
-        payScheme: 'fuse',
-        rampID: '',
-        contractAddress: '0xb1DD0B683d9A56525cC096fbF5eec6E60FE79871',
-        mintDecimals: 18,
-      ),
-    ]);
-  } else {
-    blockChains.addAll([
-      FuseFungibleCoin(
-        name: 'sFUSE',
-        rpc: 'https://rpc.fuse.io',
-        chainId: 122,
-        blockExplorer: 'https://explorer.fuse.io/tx/$blockExplorerPlaceholder',
-        symbol: 'sFUSE',
-        default_: 'sFUSE',
-        image: 'assets/sfuse.png',
-        coinType: 60,
-        geckoID: "liquid-staked-fuse",
-        payScheme: 'fuse',
-        rampID: '',
-        contractAddress: '0xb1DD0B683d9A56525cC096fbF5eec6E60FE79871',
-        mintDecimals: 18,
-      ),
-    ]);
-  }
+  blockChains.addAll([
+    FuseFungibleCoin(
+      name: 'sFUSE',
+      rpc: 'https://rpc.fuse.io',
+      chainId: 122,
+      blockExplorer: 'https://explorer.fuse.io/tx/$blockExplorerPlaceholder',
+      symbol: 'sFUSE',
+      default_: 'FUSE',
+      image: 'assets/sfuse.png',
+      coinType: 60,
+      geckoID: "liquid-staked-fuse",
+      payScheme: 'fuse',
+      rampID: '',
+      contractAddress: '0xb1DD0B683d9A56525cC096fbF5eec6E60FE79871',
+      mintDecimals: 18,
+    ),
+    FuseFungibleCoin(
+      name: 'USDC',
+      symbol: 'USDC',
+      image: 'assets/wusd.png',
+      mintDecimals: 6,
+      geckoID: 'usd-coin',
+      rpc: 'https://rpc.fuse.io',
+      chainId: 122,
+      blockExplorer: 'https://explorer.fuse.io/tx/$blockExplorerPlaceholder',
+      default_: 'FUSE',
+      coinType: 60,
+      payScheme: '',
+      rampID: '',
+      contractAddress: '0x620fd5fa44BE6af63715Ef4E65DDFA0387aD13F5',
+    ),
+    FuseFungibleCoin(
+      name: 'VoltToken',
+      symbol: 'VOLT',
+      image: 'assets/volt_token.png',
+      mintDecimals: 18,
+      geckoID: 'fusefi',
+      rpc: 'https://rpc.fuse.io',
+      chainId: 122,
+      blockExplorer: 'https://explorer.fuse.io/tx/$blockExplorerPlaceholder',
+      default_: 'FUSE',
+      coinType: 60,
+      payScheme: '',
+      rampID: '',
+      contractAddress: '0x34Ef2Cc892a88415e9f02b91BfA9c91fC0bE6bD4',
+    ),
+  ]);
 
   return blockChains;
 }

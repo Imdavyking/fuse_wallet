@@ -218,16 +218,16 @@ List<SplTokenCoin> getSplTokens() {
     blockChains.addAll([
       SplTokenCoin(
         name: 'USDC',
-        symbol: 'USDC',
+        symbol: 'USDC',     image: 'assets/wusd.png',      mintDecimals: 6,
+        geckoID: 'usd-coin',
         default_: 'SOL',
         blockExplorer:
             'https://explorer.solana.com/tx/$blockExplorerPlaceholder',
-        image: 'assets/wusd.png',
+   
         rpc: 'https://solana-api.projectserum.com',
         ws: 'wss://solana-api.projectserum.com',
         mint: 'EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v',
-        mintDecimals: 6,
-        geckoID: 'usd-coin',
+  
       ),
     ]);
   }

@@ -7,6 +7,7 @@ const coinGeckoIDs = [
   "binance-usd",
   "acala",
   "kusama",
+  'fusefi',
   "notcoin",
   "internet-computer",
   "aptos",

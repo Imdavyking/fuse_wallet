@@ -1,6 +1,6 @@
 ```
-Flutter 3.7.12 • channel stable • https://github.com/flutter/flutter.git
-Framework • revision 4d9e56e694 (6 months ago) • 2023-04-17 21:47:46 -0400
-Engine • revision 1a65d409c7
-Tools • Dart 2.19.6 • DevTools 2.20.1
+Flutter 3.22.3 • channel stable • https://github.com/flutter/flutter.git
+Framework • revision b0850beeb2 (4 weeks ago) • 2024-07-16 21:43:41 -0700
+Engine • revision 235db911ba
+Tools • Dart 3.4.4 • DevTools 2.34.3
 ```

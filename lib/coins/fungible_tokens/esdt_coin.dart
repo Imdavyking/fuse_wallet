@@ -16,7 +16,6 @@ import '../../model/esdt_balance_model.dart';
 import '../../utils/app_config.dart';
 import 'package:multiversx_sdk/multiversx.dart' as multiversx;
 
-
 class ESDTCoin extends MultiversxCoin implements FTExplorer {
   String identifier;
   int mintDecimals;
@@ -37,7 +36,8 @@ class ESDTCoin extends MultiversxCoin implements FTExplorer {
           image: image,
           rpc: rpc,
           name: name,
-          geckoID: geckoID, rampID: '',
+          geckoID: geckoID,
+          rampID: '',
           payScheme: '',
         );
 
@@ -48,8 +48,7 @@ class ESDTCoin extends MultiversxCoin implements FTExplorer {
   int decimals() => mintDecimals;
 
   @override
-  String contractAddress() => identifier;
-
+  String tokenAddress() => identifier;
 
   factory ESDTCoin.fromJson(Map<String, dynamic> json) {
     return ESDTCoin(
@@ -172,7 +171,7 @@ class ESDTCoin extends MultiversxCoin implements FTExplorer {
   String contractExplorer() {
     return getExplorer().replaceFirst(
       '/transactions/$blockExplorerPlaceholder',
-      '/tokens/${contractAddress()}',
+      '/tokens/${tokenAddress()}',
     );
   }
 

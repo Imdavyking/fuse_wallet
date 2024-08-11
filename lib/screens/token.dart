@@ -127,7 +127,7 @@ class _TokenState extends State<Token> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          coin.contractAddress() != null
+          coin.tokenAddress() != null
               ? ellipsify(str: coin.getName())
               : coin.getName(),
         ),
@@ -167,7 +167,7 @@ class _TokenState extends State<Token> {
                   size: 20,
                 ),
               ),
-          if (coin.contractAddress() != null)
+          if (coin.tokenAddress() != null)
             IconButton(
               onPressed: () async {
                 Navigator.push(
@@ -311,7 +311,7 @@ class _TokenState extends State<Token> {
                                             fontSize: 20,
                                             fontWeight: FontWeight.bold),
                                         balance: tokenBalance,
-                                        symbol: coin.contractAddress() != null
+                                        symbol: coin.tokenAddress() != null
                                             ? ellipsify(str: coin.getSymbol())
                                             : coin.getSymbol(),
                                       );

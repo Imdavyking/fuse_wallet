@@ -68,7 +68,7 @@ class _SendTokenState extends State<SendToken> {
       key: _scaffoldKey,
       appBar: AppBar(
         title: Text(
-            '${localization.send} ${coin.contractAddress() != null ? ellipsify(str: coin.getSymbol()) : coin.getSymbol()}'),
+            '${localization.send} ${coin.tokenAddress() != null ? ellipsify(str: coin.getSymbol()) : coin.getSymbol()}'),
       ),
       body: SafeArea(
         child: SingleChildScrollView(
@@ -111,7 +111,7 @@ class _SendTokenState extends State<SendToken> {
                             }
 
                             try {
-                              if (coin.contractAddress() != null) {
+                              if (coin.tokenAddress() != null) {
                                 Map data = EIP681.parse(recipientAddr);
 
                                 recipientContrl

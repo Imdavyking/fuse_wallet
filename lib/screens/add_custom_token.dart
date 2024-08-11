@@ -1,4 +1,3 @@
-
 import 'package:cryptowallet/coins/ethereum_coin.dart';
 import 'package:cryptowallet/screens/select_blockchain.dart';
 import 'package:cryptowallet/screens/wallet.dart';
@@ -371,7 +370,7 @@ class _AddCustomTokenState extends State<AddCustomToken> {
                       for (ERCFungibleCoin ercCoin in erc20Coins) {
                         final conAddrLow = contractAddr.toLowerCase();
                         final currAddrlow =
-                            ercCoin.contractAddress().toLowerCase();
+                            ercCoin.tokenAddress().toLowerCase();
                         if (conAddrLow == currAddrlow &&
                             coin.chainId == ercCoin.chainId) {
                           ScaffoldMessenger.of(context).showSnackBar(

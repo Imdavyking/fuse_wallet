@@ -59,7 +59,7 @@ class _StakeTokenState extends State<StakeToken> {
       key: _scaffoldKey,
       appBar: AppBar(
         title: Text(
-            '${localization.stake} ${coin.contractAddress() != null ? ellipsify(str: coin.getSymbol()) : coin.getSymbol()}'),
+            '${localization.stake} ${coin.tokenAddress() != null ? ellipsify(str: coin.getSymbol()) : coin.getSymbol()}'),
       ),
       body: SafeArea(
         child: SingleChildScrollView(

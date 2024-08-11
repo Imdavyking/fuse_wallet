@@ -35,7 +35,8 @@ class NearFungibleCoin extends NearCoin implements FTExplorer {
           default_: default_,
           image: image,
           name: name,
-          suffix: suffix, rampID: '',
+          suffix: suffix,
+          rampID: '',
           payScheme: '',
         );
 
@@ -70,8 +71,6 @@ class NearFungibleCoin extends NearCoin implements FTExplorer {
     return data;
   }
 
-
-
   @override
   String get badgeImage => nearChains.first.image;
 
@@ -79,13 +78,13 @@ class NearFungibleCoin extends NearCoin implements FTExplorer {
   int decimals() => mintDecimals;
 
   @override
-  String contractAddress() => contractID;
+  String tokenAddress() => contractID;
 
   @override
   String contractExplorer() {
     return getExplorer().replaceFirst(
       '/txns/$blockExplorerPlaceholder',
-      '/token/${contractAddress()}',
+      '/token/${tokenAddress()}',
     );
   }
 

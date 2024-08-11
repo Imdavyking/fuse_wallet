@@ -31,7 +31,7 @@ class ERCNFTCoin extends EthereumCoin {
   Widget? getNFTPage() => null;
 
   @override
-  String contractAddress() {
+  String tokenAddress() {
     return contractAddress_;
   }
 
@@ -218,7 +218,7 @@ class ERCNFTCoin extends EthereumCoin {
 
     final contract = DeployedContract(
       contrAbi,
-      EthereumAddress.fromHex(contractAddress()),
+      EthereumAddress.fromHex(tokenAddress()),
     );
 
     final transfer =
@@ -231,7 +231,7 @@ class ERCNFTCoin extends EthereumCoin {
       contractData,
       sendingAddress,
       EthereumAddress.fromHex(
-        contractAddress(),
+        tokenAddress(),
       ),
     );
 

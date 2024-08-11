@@ -58,7 +58,7 @@ class _UnStakeTokenState extends State<UnStakeToken> {
       key: _scaffoldKey,
       appBar: AppBar(
         title: Text(
-            '${localization.unstakeToken} ${coin.contractAddress() != null ? ellipsify(str: coin.getSymbol()) : coin.getSymbol()}'),
+            '${localization.unstakeToken} ${coin.tokenAddress() != null ? ellipsify(str: coin.getSymbol()) : coin.getSymbol()}'),
       ),
       body: SafeArea(
         child: SingleChildScrollView(

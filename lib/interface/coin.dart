@@ -80,7 +80,7 @@ abstract class Coin {
   Future<double> getTransactionFee(String amount, String to);
 
   String getImage();
-  String? contractAddress() => null;
+  String? tokenAddress() => null;
 
   String? get badgeImage => null;
 

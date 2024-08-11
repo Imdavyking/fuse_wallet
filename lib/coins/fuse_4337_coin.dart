@@ -34,6 +34,7 @@ class FuseCoin extends Coin {
   String geckoID;
   String rampID;
   String payScheme;
+  String contractAddress;
 
   FuseCoin({
     required this.blockExplorer,
@@ -47,6 +48,7 @@ class FuseCoin extends Coin {
     required this.geckoID,
     required this.rampID,
     required this.payScheme,
+    required this.contractAddress,
   });
 
   @override
@@ -84,7 +86,7 @@ class FuseCoin extends Coin {
       StakeRequestBody(
         accountAddress: fuseSDK.wallet.getSender(),
         tokenAmount: amount,
-        tokenAddress: Variables.NATIVE_TOKEN_ADDRESS,
+        tokenAddress: contractAddress,
       ),
     );
     final ev = await res.wait();
@@ -99,7 +101,7 @@ class FuseCoin extends Coin {
       UnstakeRequestBody(
         accountAddress: fuseSDK.wallet.getSender(),
         tokenAmount: amount,
-        tokenAddress: Variables.NATIVE_TOKEN_ADDRESS,
+        tokenAddress: contractAddress,
       ),
       EthereumAddress.fromHex('0xb1DD0B683d9A56525cC096fbF5eec6E60FE79871'),
     );
@@ -130,6 +132,7 @@ class FuseCoin extends Coin {
       geckoID: json['geckoID'],
       rampID: json['rampID'],
       payScheme: json['payScheme'],
+      contractAddress: json['contractAddress'],
     );
   }
 
@@ -147,6 +150,7 @@ class FuseCoin extends Coin {
     data['geckoID'] = geckoID;
     data['rampID'] = rampID;
     data['payScheme'] = payScheme;
+    data['contractAddress'] = contractAddress;
 
     return data;
   }
@@ -263,7 +267,7 @@ class FuseCoin extends Coin {
   Future<double> getBalance(bool skipNetworkRequest) async {
     String address = roninAddrToEth(await getAddress());
 
-    final tokenKey = '$rpc$address/balance4337';
+    final tokenKey = '$rpc$address/balance4337$contractAddress';
     final storedBalance = pref.get(tokenKey);
 
     double savedBalance = 0;
@@ -292,7 +296,7 @@ class FuseCoin extends Coin {
       final userTokens = BalanceResponse.fromJson(Map.from(response.data));
 
       for (TokenDetails action in userTokens.result) {
-        if (ContractsUtils.isNativeToken(action.address)) {
+        if (action.address.toLowerCase() == contractAddress.toLowerCase()) {
           final base = BigInt.from(10);
 
           double fuseBalance = action.amount / base.pow(decimals());
@@ -313,7 +317,7 @@ class FuseCoin extends Coin {
 
   @override
   String savedTransKey() {
-    return '$default_$rpc Details';
+    return '$default_$rpc Details$contractAddress';
   }
 
   @override
@@ -323,7 +327,7 @@ class FuseCoin extends Coin {
     final wei = amount.toBigIntDec(decimals());
     final res = await fuseSdk.transferToken(
       EthereumAddress.fromHex(
-        Variables.NATIVE_TOKEN_ADDRESS,
+        contractAddress,
       ),
       EthereumAddress.fromHex(
         to,
@@ -385,6 +389,7 @@ List<FuseCoin> getFUSEBlockchains() {
         geckoID: "fuse-network-token",
         payScheme: 'fuse',
         rampID: '',
+        contractAddress: Variables.NATIVE_TOKEN_ADDRESS,
       ),
     ]);
   } else {
@@ -401,6 +406,7 @@ List<FuseCoin> getFUSEBlockchains() {
         geckoID: "fuse-network-token",
         payScheme: 'fuse',
         rampID: '',
+        contractAddress: Variables.NATIVE_TOKEN_ADDRESS,
       ),
     ]);
   }

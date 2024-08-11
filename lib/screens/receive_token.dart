@@ -88,7 +88,7 @@ class _ReceiveTokenState extends State<ReceiveToken> {
           );
 
           params.requestUrl = EIP681.build(
-            targetAddress: coin.contractAddress()!,
+            targetAddress: coin.tokenAddress()!,
             chainId: chainId,
             functionName: 'transfer',
             parameters: {
@@ -120,7 +120,7 @@ class _ReceiveTokenState extends State<ReceiveToken> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-            '${localizations.receive} ${coin.contractAddress() != null ? ellipsify(str: coin.getSymbol()) : coin.getSymbol()}'),
+            '${localizations.receive} ${coin.tokenAddress() != null ? ellipsify(str: coin.getSymbol()) : coin.getSymbol()}'),
         actions: [
           IconButton(
             onPressed: () async {
@@ -218,7 +218,7 @@ class _ReceiveTokenState extends State<ReceiveToken> {
                           TextSpan(children: [
                             TextSpan(
                               text: localizations.sendOnly(
-                                '${coin.contractAddress() != null ? ellipsify(str: coin.getName()) : coin.getName()} (${coin.contractAddress() != null ? ellipsify(str: coin.getSymbol()) : coin.getSymbol()})',
+                                '${coin.tokenAddress() != null ? ellipsify(str: coin.getName()) : coin.getName()} (${coin.tokenAddress() != null ? ellipsify(str: coin.getSymbol()) : coin.getSymbol()})',
                               ),
                             ),
                           ]),

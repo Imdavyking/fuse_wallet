@@ -28,7 +28,8 @@ class SplTokenCoin extends SolanaCoin implements FTExplorer {
     required String geckoID,
     required this.mint,
     required this.mintDecimals,
-  }) : super( rampID: '',
+  }) : super(
+          rampID: '',
           payScheme: '',
           blockExplorer: blockExplorer,
           symbol: symbol,
@@ -56,7 +57,7 @@ class SplTokenCoin extends SolanaCoin implements FTExplorer {
   }
 
   @override
-  String contractAddress() {
+  String tokenAddress() {
     return mint;
   }
 
@@ -178,7 +179,6 @@ class SplTokenCoin extends SolanaCoin implements FTExplorer {
     return signature;
   }
 
- 
   @override
   int decimals() {
     return mintDecimals;
@@ -188,7 +188,7 @@ class SplTokenCoin extends SolanaCoin implements FTExplorer {
   String contractExplorer() {
     return getExplorer().replaceFirst(
       '/tx/$blockExplorerPlaceholder',
-      '/address/${contractAddress()}',
+      '/address/${tokenAddress()}',
     );
   }
 

@@ -1,6 +1,5 @@
 // ignore_for_file: non_constant_identifier_names, constant_identifier_names
 
-
 import 'package:cryptowallet/extensions/big_int_ext.dart';
 import 'package:hex/hex.dart';
 import 'package:ton_dart/ton_dart.dart';
@@ -78,12 +77,12 @@ class TonFungibleCoin extends TonCoin implements FTExplorer {
   String contractExplorer() {
     return getExplorer().replaceFirst(
       '/tx/$blockExplorerPlaceholder',
-      '/jetton/${contractAddress()}',
+      '/jetton/${tokenAddress()}',
     );
   }
 
   @override
-  String contractAddress() => tokenID;
+  String tokenAddress() => tokenID;
 
   @override
   Future<double> getBalance(bool skipNetworkRequest) async {

@@ -28,13 +28,13 @@ class ERCFungibleCoin extends EthereumCoin implements FTExplorer {
   Widget? getNFTPage() => null;
 
   @override
-  String contractAddress() => contractAddress_;
+  String tokenAddress() => contractAddress_;
 
   @override
   String contractExplorer() {
     return getExplorer().replaceFirst(
       '/tx/$blockExplorerPlaceholder',
-      '/token/${contractAddress()}',
+      '/token/${tokenAddress()}',
     );
   }
 
@@ -233,7 +233,7 @@ class ERCFungibleCoin extends EthereumCoin implements FTExplorer {
 
     final contract = DeployedContract(
       _contrAbi,
-      EthereumAddress.fromHex(contractAddress()),
+      EthereumAddress.fromHex(tokenAddress()),
     );
 
     final nameFunction = contract.function('name');
@@ -270,7 +270,7 @@ class ERCFungibleCoin extends EthereumCoin implements FTExplorer {
       address,
     );
 
-    final balanceKey = '$chainId${contractAddress()}${address}ercBalance';
+    final balanceKey = '$chainId${tokenAddress()}${address}ercBalance';
     final storedBalance = pref.get(balanceKey);
 
     double savedBalance = 0;
@@ -285,7 +285,7 @@ class ERCFungibleCoin extends EthereumCoin implements FTExplorer {
       final contract = DeployedContract(
         _contrAbi,
         EthereumAddress.fromHex(
-          contractAddress(),
+          tokenAddress(),
         ),
       );
 
@@ -323,7 +323,7 @@ class ERCFungibleCoin extends EthereumCoin implements FTExplorer {
 
     final contract = DeployedContract(
       _contrAbi,
-      EthereumAddress.fromHex(contractAddress()),
+      EthereumAddress.fromHex(tokenAddress()),
     );
 
     final allowanceFunction = contract.function('allowance');
@@ -353,7 +353,7 @@ class ERCFungibleCoin extends EthereumCoin implements FTExplorer {
 
     final contract = DeployedContract(
       _contrAbi,
-      EthereumAddress.fromHex(contractAddress()),
+      EthereumAddress.fromHex(tokenAddress()),
     );
 
     final transfer = contract.function('transfer');
@@ -365,7 +365,7 @@ class ERCFungibleCoin extends EthereumCoin implements FTExplorer {
       contractData,
       sendingAddress,
       EthereumAddress.fromHex(
-        contractAddress(),
+        tokenAddress(),
       ),
     );
 

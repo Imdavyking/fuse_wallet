@@ -75,7 +75,7 @@ class TokenContractInfo extends StatelessWidget {
                       Wrap(
                         children: [
                           Text(
-                            coin.contractAddress()!,
+                            coin.tokenAddress()!,
                             style: const TextStyle(
                                 fontSize: 16, color: Colors.grey),
                           ),
@@ -85,7 +85,7 @@ class TokenContractInfo extends StatelessWidget {
                           GestureDetector(
                             onTap: () async {
                               await Clipboard.setData(ClipboardData(
-                                text: coin.contractAddress()!,
+                                text: coin.tokenAddress()!,
                               ));
 
                               ScaffoldMessenger.of(context).showSnackBar(

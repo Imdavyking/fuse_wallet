@@ -3,6 +3,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:cryptowallet/coins/fungible_tokens/erc_fungible_coin.dart';
+import 'package:cryptowallet/coins/fungible_tokens/fuse_4337_ft.dart';
 import 'package:cryptowallet/coins/fuse_4337_coin.dart';
 import 'package:cryptowallet/wordlist.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
@@ -96,6 +97,7 @@ Future<List<Coin>> getAllBlockchains_fun() async {
     ...getICPBlockchains(),
     ...getSuiBlockChains(),
     ...getRoninBlockchains(),
+    ...getFUSEFTBlockchains(),
     ...getSplTokens(),
     ...erc20Coins,
   ]..sort((a, b) => a.getSymbol().compareTo(b.getSymbol()));

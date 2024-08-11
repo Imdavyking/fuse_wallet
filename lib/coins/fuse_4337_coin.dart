@@ -72,7 +72,7 @@ class FuseCoin extends Coin {
   }
 
   @override
-  Widget getStakingPage() {
+  Widget? getStakingPage() {
     return StakeToken(
       tokenData: this,
     );

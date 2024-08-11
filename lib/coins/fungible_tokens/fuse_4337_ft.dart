@@ -1,6 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
 import 'package:cryptowallet/coins/fuse_4337_coin.dart';
+import 'package:flutter/material.dart';
 
 import '../../interface/ft_explorer.dart';
 import 'package:cryptowallet/utils/app_config.dart';
@@ -52,6 +53,9 @@ class FuseFungibleCoin extends FuseCoin implements FTExplorer {
   }
 
   @override
+  Widget? getStakingPage() => null;
+
+  @override
   Future<String?> stakeToken(String amount) async {
     return null;
   }
@@ -80,7 +84,7 @@ List<FuseFungibleCoin> getFUSEFTBlockchains() {
         payScheme: 'fuse',
         rampID: '',
         contractAddress: '0xb1DD0B683d9A56525cC096fbF5eec6E60FE79871',
-        mintDecimals: 10,
+        mintDecimals: 18,
       ),
     ]);
   } else {
@@ -98,7 +102,7 @@ List<FuseFungibleCoin> getFUSEFTBlockchains() {
         payScheme: 'fuse',
         rampID: '',
         contractAddress: '0xb1DD0B683d9A56525cC096fbF5eec6E60FE79871',
-        mintDecimals: 10,
+        mintDecimals: 18,
       ),
     ]);
   }
